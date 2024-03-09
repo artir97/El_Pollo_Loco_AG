@@ -39,7 +39,15 @@ const level1 = new Level(
         new Coin (200 + 2000*Math.random(), 100 + 200*Math.random()),
         new Coin (200 + 2000*Math.random(), 100 + 200*Math.random()),
         new Coin (200 + 2000*Math.random(), 100 + 200*Math.random()),
-        new Coin (200 + 2000*Math.random(), 100 + 200*Math.random()) 
-       
+        new Coin (200 + 2000*Math.random(), 100 + 200*Math.random())   
+    ],
+    [
+        new Bottle(200 + 2000*Math.random(), 350),
+        new Bottle(200 + 2000*Math.random(), 350),
+        new Bottle(200 + 2000*Math.random(), 350),
+        new Bottle(200 + 2000*Math.random(), 350),
+        new Bottle(200 + 2000*Math.random(), 350),
+        new Bottle(200 + 2000*Math.random(), 350)
+
     ]
 );

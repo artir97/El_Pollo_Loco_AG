@@ -10,6 +10,7 @@ class World {
     bottlebar = new BottleBar();
     throwableObjects = [];
     coins = this.level.coins;
+    bottles = this.level.bottles;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -64,6 +65,7 @@ class World {
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.throwableObjects);
 
 
