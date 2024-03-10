@@ -21,6 +21,7 @@ class World {
         this.run();
     }
 
+
     run() {
         setInterval(() => {
             this.checkCollisions();
@@ -28,29 +29,50 @@ class World {
         }, 200);
     }
 
+
     checkCollisions() {
         this.checkCollisionWithEnemy();
         this.checkCollisionWithCoin();
+        this.checkCollisionWithBottle();
 
     }
 
-    checkCollisionWithEnemy(){
+
+    checkCollisionWithEnemy() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.healthbar.setPercentage(this.character.energy);
-                console.log(this.character.energy);
             }
         });
     }
 
-    checkCollisionWithCoin(){
+
+    checkCollisionWithCoin() {
         this.level.coins.forEach((coin) => {
-            if(this.character.isColliding(coin)){
-                console.log(coin);
+            if (this.character.isColliding(coin)) {
+                let indexCollectedCoin = this.level.coins.indexOf(coin);
+
+                this.character.collectCoin();
+                this.level.coins.splice(indexCollectedCoin, 1);
+                this.coinbar.setPercentage(this.character.coins);
             }
         });
     }
+
+
+    checkCollisionWithBottle() {
+        this.level.bottles.forEach((bottle) => {
+            if (this.character.isColliding(bottle)) {
+                let indexCollectedBottle = this.level.bottles.indexOf(bottle);
+
+                this.character.collectBottle();
+                this.level.bottles.splice(indexCollectedBottle, 1);
+                this.bottlebar.setPercentage(this.character.bottles);
+            }
+        })
+    }
+
 
     checkThrowObjects() {
         if (this.keyboard.D) {
@@ -59,9 +81,11 @@ class World {
         }
     }
 
+
     setWorld() {
         this.character.world = this;
     }
+
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -90,11 +114,13 @@ class World {
         });
     }
 
+
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
         })
     }
+
 
     addToMap(mo) {
         if (mo.otherDirection) {
@@ -108,12 +134,14 @@ class World {
         }
     }
 
+
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
         this.ctx.scale(-1, 1);
         mo.x = mo.x * -1;
     }
+
 
     flipImageBack(mo) {
         mo.x = mo.x * -1;
