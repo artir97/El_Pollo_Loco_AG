@@ -17,7 +17,7 @@ class HealthBar extends DrawableObject {
         this.y = -15;
         this.width = 200;
         this.height = 70;
-        this.setPercentage(100);
+        this.setPercentage(this.percentage);
     }
 
     setPercentage(percentage) {

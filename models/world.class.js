@@ -29,11 +29,25 @@ class World {
     }
 
     checkCollisions() {
+        this.checkCollisionWithEnemy();
+        this.checkCollisionWithCoin();
+
+    }
+
+    checkCollisionWithEnemy(){
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.healthbar.setPercentage(this.character.energy);
                 console.log(this.character.energy);
+            }
+        });
+    }
+
+    checkCollisionWithCoin(){
+        this.level.coins.forEach((coin) => {
+            if(this.character.isColliding(coin)){
+                console.log(coin);
             }
         });
     }
