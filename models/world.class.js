@@ -1,6 +1,10 @@
 class World {
     character = new Character();
     level = level1;
+    coins = this.level.coins;
+    bottles = this.level.bottles;
+    endboss = this.level.enemies[this.level.enemies.length - 1];
+
     canvas;
     ctx;
     keyboard;
@@ -9,8 +13,6 @@ class World {
     coinbar = new CoinBar();
     bottlebar = new BottleBar();
     throwableObjects = [];
-    coins = this.level.coins;
-    bottles = this.level.bottles;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -34,7 +36,7 @@ class World {
         this.checkCollisionWithEnemy();
         this.checkCollisionWithCoin();
         this.checkCollisionWithBottle();
-
+        this.checkCollisionBottleWithEndboss();
     }
 
 
@@ -87,6 +89,15 @@ class World {
     }
 
 
+    checkCollisionBottleWithEndboss() {
+        this.throwableObjects.forEach((bottle) => {
+            if(this.endboss.isColliding(bottle)){
+
+            }
+        })
+    }
+
+    
     setWorld() {
         this.character.world = this;
     }
@@ -110,7 +121,6 @@ class World {
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.throwableObjects);
-
 
         this.ctx.translate(-this.camera_x, 0);
         let self = this;
