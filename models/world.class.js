@@ -92,12 +92,13 @@ class World {
     checkCollisionBottleWithEndboss() {
         this.throwableObjects.forEach((bottle) => {
             if(this.endboss.isColliding(bottle)){
-
+                this.endboss.hit();
+                console.log(this.endboss.energy);
             }
         })
     }
 
-    
+
     setWorld() {
         this.character.world = this;
     }
@@ -123,7 +124,7 @@ class World {
         this.addObjectsToMap(this.throwableObjects);
 
         this.ctx.translate(-this.camera_x, 0);
-        let self = this;
+        let self = this; 
         requestAnimationFrame(function () {
             self.draw();
         });
