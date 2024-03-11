@@ -63,7 +63,7 @@ class World {
 
     checkCollisionWithBottle() {
         this.level.bottles.forEach((bottle) => {
-            if (this.character.isColliding(bottle)) {
+            if (this.character.isColliding(bottle) && this.character.bottles < 100) {
                 let indexCollectedBottle = this.level.bottles.indexOf(bottle);
 
                 this.character.collectBottle();
