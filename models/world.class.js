@@ -12,6 +12,7 @@ class World {
     healthbar = new HealthBar();
     coinbar = new CoinBar();
     bottlebar = new BottleBar();
+    healthBarEndboss = new HealthBarEndboss();
     throwableObjects = [];
 
     constructor(canvas, keyboard) {
@@ -121,6 +122,7 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
+        this.addToMap(this.healthBarEndboss);
         this.addObjectsToMap(this.throwableObjects);
 
         this.ctx.translate(-this.camera_x, 0);
