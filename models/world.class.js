@@ -94,7 +94,7 @@ class World {
         this.throwableObjects.forEach((bottle) => {
             if(this.endboss.isColliding(bottle)){
                 this.endboss.hit();
-                console.log(this.endboss.energy);
+                this.healthBarEndboss.setPercentage(this.endboss.energy);
             }
         })
     }
@@ -122,7 +122,7 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
-        this.addToMap(this.healthBarEndboss);
+        this.addToMap(this.healthBarEndboss); 
         this.addObjectsToMap(this.throwableObjects);
 
         this.ctx.translate(-this.camera_x, 0);
