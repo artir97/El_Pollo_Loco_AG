@@ -38,6 +38,7 @@ class World {
         this.checkCollisionWithCoin();
         this.checkCollisionWithBottle();
         this.checkCollisionBottleWithEndboss();
+        this.checkCollisionBottleWithChicken();
     }
 
 
@@ -87,6 +88,21 @@ class World {
                 this.bottlebar.setPercentage(this.character.bottles);
             }
         }
+    }
+
+ 
+    checkCollisionBottleWithChicken(){
+        this.level.enemies.forEach((enemy) => {
+            this.throwableObjects.forEach((bottle) => {
+                if(bottle.isColliding(enemy)){
+                    console.log('Collision with Enemy');
+                    console.log(this.level.enemies.indexOf(enemy));
+                    let indexOfEnemy = this.level.enemies.indexOf(enemy);
+                    this.level.enemies[indexOfEnemy].hit();
+                    console.log(this.level.enemies[indexOfEnemy]);
+                }
+            })
+        })
     }
 
 
