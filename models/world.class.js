@@ -44,12 +44,21 @@ class World {
 
     checkCollisionWithEnemy() {
         this.level.enemies.forEach((enemy) => {
+
+            if (this.character.isCollidingThroughJump(enemy)) {
+                if (enemy.energy > 0) {
+                    enemy.hit();
+                }
+            }
+
             if (this.character.isColliding(enemy)) {
-                if(enemy.energy > 0){
+                if (enemy.energy > 0) {
                     this.character.hit();
                     this.healthbar.setPercentage(this.character.energy);
                 }
             }
+
+
         });
     }
 
@@ -82,7 +91,7 @@ class World {
 
     checkThrowObjects() {
         if (this.keyboard.D) {
-            if(this.character.bottles > 0){
+            if (this.character.bottles > 0) {
                 let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
                 this.throwableObjects.push(bottle);
 
@@ -92,11 +101,11 @@ class World {
         }
     }
 
- 
-    checkCollisionBottleWithChicken(){
+
+    checkCollisionBottleWithChicken() {
         this.level.enemies.forEach((enemy) => {
             this.throwableObjects.forEach((bottle) => {
-                if(bottle.isColliding(enemy)){
+                if (bottle.isColliding(enemy)) {
                     console.log('Collision with Enemy');
                     console.log(this.level.enemies.indexOf(enemy));
                     let indexOfEnemy = this.level.enemies.indexOf(enemy);
@@ -110,7 +119,7 @@ class World {
 
     checkCollisionBottleWithEndboss() {
         this.throwableObjects.forEach((bottle) => {
-            if(this.endboss.isColliding(bottle)){
+            if (this.endboss.isColliding(bottle)) {
                 this.endboss.hit();
                 this.healthBarEndboss.setPercentage(this.endboss.energy);
             }
@@ -140,11 +149,11 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
-        this.addToMap(this.healthBarEndboss); 
+        this.addToMap(this.healthBarEndboss);
         this.addObjectsToMap(this.throwableObjects);
 
         this.ctx.translate(-this.camera_x, 0);
-        let self = this; 
+        let self = this;
         requestAnimationFrame(function () {
             self.draw();
         });

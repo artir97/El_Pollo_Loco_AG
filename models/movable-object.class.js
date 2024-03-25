@@ -54,6 +54,15 @@ class MovableObject extends DrawableObject {
             this.y < obj.y + obj.height
         );
     }
+    
+    
+    isCollidingThroughJump(enemy) {
+        return (
+            this.y + this.height > enemy.y &&
+            this.x + this.width > enemy.x &&
+            this.x < enemy.x + enemy.width
+        );
+    }
 
 
     //combine 
