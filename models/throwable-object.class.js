@@ -1,14 +1,27 @@
 class ThrowableObject extends MovableObject {
+    IMAGES_FLYING_BOTTLE = [
+        'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
+        'img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
+        'img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png',
+        'img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png',
+    ];
+
 
     constructor(x, y) {
         super();
-        this.loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
         this.x = x;
         this.y = y;
         this.height = 80;
         this.width = 80;
+
+        this.loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
+        this.loadImages(this.IMAGES_FLYING_BOTTLE);
+
         this.throw(100, 150);
+        this.animate();
+
     }
+
 
     throw() {
         this.speedY = 30;
@@ -17,4 +30,15 @@ class ThrowableObject extends MovableObject {
             this.x += 10;
         }, 25);
     }
+
+
+    animate() {
+        setInterval(() => {
+
+            if (this.isAboveGround()) {
+                this.playAnimation(this.IMAGES_FLYING_BOTTLE);
+            }
+        }, 1000 / 10);
+    }
+
 }

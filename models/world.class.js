@@ -85,6 +85,8 @@ class World {
                 this.character.collectBottle();
                 this.level.bottles.splice(indexCollectedBottle, 1);
                 this.bottlebar.setPercentage(this.character.bottles);
+
+                return true;
             }
         })
     }
