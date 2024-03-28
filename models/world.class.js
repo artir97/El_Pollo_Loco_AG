@@ -45,11 +45,11 @@ class World {
     checkCollisionWithEnemy() {
         this.level.enemies.forEach((enemy) => {
 
-            if (this.character.isCollidingThroughJump(enemy)) {
-                if (enemy.energy > 0) {
-                    enemy.hit();
-                }
-            }
+            // if (this.character.isCollidingThroughJump(enemy)) {
+            //     if (enemy.energy > 0) {
+            //         enemy.hit();
+            //     }
+            // }
 
             if (this.character.isColliding(enemy)) {
                 if (enemy.energy > 0) {
@@ -151,6 +151,7 @@ class World {
         this.addObjectsToMap(this.level.bottles);
         this.addToMap(this.healthBarEndboss);
         this.addObjectsToMap(this.throwableObjects);
+
 
         this.ctx.translate(-this.camera_x, 0);
         let self = this;
