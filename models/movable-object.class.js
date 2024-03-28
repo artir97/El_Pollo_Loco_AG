@@ -29,20 +29,20 @@ class MovableObject extends DrawableObject {
     jump() {
         this.speedY = 30;
     }
-    
-    
+
+
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHit;
         timePassed = timePassed / 1000;
         return timePassed < 1;
     }
 
-    
+
     isDead() {
         return this.energy == 0;
     }
 
-    
+
     hit() {
         this.energy -= 5;
         if (this.energy < 0) {
@@ -54,46 +54,25 @@ class MovableObject extends DrawableObject {
 
 
     isColliding(obj) {
-        return this.x + this.width - this.offset.right > obj.x + obj.offset.left &&
+        return (
+            this.x + this.width - this.offset.right > obj.x + obj.offset.left &&
             this.y + this.height - this.offset.bottom > obj.y + obj.offset.top &&
             this.x + this.offset.left < obj.x + obj.width - obj.offset.right &&
-            this.y + this.offset.top < obj.y + obj.height - obj.offset.bottom;
+            this.y + this.offset.top < obj.y + obj.height - obj.offset.bottom
+        );
     }
 
-    // isColliding(obj) {
-    //     return (
-    //         (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) && 
-    //         (this.y + this.offsetY + this.height) >= obj.y &&
-    //         (this.y + this.offsetY) <= (obj.y + obj.height)
- 
-    //         // this.x + this.width > obj.x && // R -> L
-    //         // this.y + this.height > obj.y && // T -> B
-    //         // this.x < obj.x + obj.width && // L -> R
-    //         // this.y < obj.y + obj.height // B -> T
-    //     );
-    // }
-    
-    
-    // isCollidingThroughJump(obj) {
-    //     return (
-    //         this.x + this.width > obj.x && // R -> L
-    //         this.y + this.height > obj.y && // T -> B
-    //         this.x < obj.x + obj.width// L -> R
-    //     );
-    // }
 
-
-    //combine 
-    collectCoin(){
+    collectCoin() {
         this.coins += 20;
-        if(this.coins > 100){
+        if (this.coins > 100) {
             this.coins = 100;
         }
     }
 
-    collectBottle(){
+    collectBottle() {
         this.bottles += 20;
-        if(this.bottles > 100){
+        if (this.bottles > 100) {
             this.bottles = 100;
         }
     }

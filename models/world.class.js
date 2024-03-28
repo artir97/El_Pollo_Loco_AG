@@ -45,11 +45,12 @@ class World {
     checkCollisionWithEnemy() {
         this.level.enemies.forEach((enemy) => {
 
-            // if (this.character.isCollidingThroughJump(enemy)) {
-            //     if (enemy.energy > 0) {
-            //         enemy.hit();
-            //     }
-            // }
+            if (this.character.isAboveGround()){
+                if(this.character.isColliding(enemy)){
+                    enemy.hit();
+                    this.character.jump();
+                }
+            }
 
             if (this.character.isColliding(enemy)) {
                 if (enemy.energy > 0) {
