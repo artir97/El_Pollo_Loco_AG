@@ -48,6 +48,5 @@ const level1 = new Level(
         new Bottle(200 + 2000*Math.random(), 350),
         new Bottle(200 + 2000*Math.random(), 350),
         new Bottle(200 + 2000*Math.random(), 350)
-
     ]
 );
