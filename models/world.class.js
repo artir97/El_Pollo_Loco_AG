@@ -1,8 +1,6 @@
 class World {
     character = new Character();
     level = level1;
-    coins = this.level.coins;
-    bottles = this.level.bottles;
     endboss = this.level.enemies[this.level.enemies.length - 1];
 
     canvas;

@@ -2,15 +2,17 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
-
-function init(){
-    canvas = document.getElementById('canvas');
+function init() {
+    canvas = document.getElementById("canvas");
+    initLevel1();
     world = new World(canvas, keyboard);
-
-
-    console.log('My character is', world.character);
 }
 
+
+function startGame(){
+    let startScreen = document.getElementById('startScreen');
+    startScreen.style = 'display: none';
+}
 
 window.addEventListener('keydown', (event) => {
     if(event.key === 'ArrowUp'){

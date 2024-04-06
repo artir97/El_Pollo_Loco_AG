@@ -3,7 +3,6 @@
     src: url('fonts/zabars.ttf');
 }
 
-
 body {
     margin: 0;
     display: flex;
@@ -17,7 +16,6 @@ body {
     font-family: 'zabars', Arial, Helvetica, sans-serif;
 }
 
-
 h1 {
     font-size: 70px;
     letter-spacing: 5px;
@@ -26,8 +24,7 @@ h1 {
     margin-bottom: 10px;
 }
 
-
-#startscreen {
+#startScreen {
     position: absolute;
     width: 720px;
     height: 480px;

@@ -6,7 +6,6 @@ class ThrowableObject extends MovableObject {
         'img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png',
     ];
 
-
     constructor(x, y) {
         super();
         this.x = x;
@@ -19,9 +18,7 @@ class ThrowableObject extends MovableObject {
 
         this.throw(100, 150);
         this.animate();
-
     }
-
 
     throw() {
         this.speedY = 30;
@@ -31,7 +28,6 @@ class ThrowableObject extends MovableObject {
         }, 25);
     }
 
-
     animate() {
         setInterval(() => {
 
@@ -40,5 +36,4 @@ class ThrowableObject extends MovableObject {
             }
         }, 1000 / 10);
     }
-
 }
