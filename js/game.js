@@ -8,8 +8,8 @@ function init() {
     world = new World(canvas, keyboard);
 }
 
-
 function startGame(){
+    init();
     let startScreen = document.getElementById('startScreen');
     startScreen.style = 'display: none';
 }
