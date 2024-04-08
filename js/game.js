@@ -14,6 +14,32 @@ function startGame(){
     startScreen.style = 'display: none';
 }
 
+function fullScreen(){
+    let canvas = document.getElementById('canvas');
+    let fullScreen = document.getElementById('fullScreen');
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    enterFullScreen(fullScreen);
+}
+
+function enterFullScreen(element) {
+    if(element.requestFullscreen) {
+        element.requestFullscreen();
+    }else if(element.msRequestFullscreen){
+        element.msRequestFullscreen();
+    }else if(element.webkitRequestFullscreen){
+        element.webkitRequestFullscreen();
+    }
+}
+
+function exitFullScreen(){
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    }
+}
+
 window.addEventListener('keydown', (event) => {
     if(event.key === 'ArrowUp'){
         keyboard.UP = true;
@@ -65,3 +91,39 @@ window.addEventListener('keyup', (event) => {
         keyboard.D = false;
     }
 })
+
+function handleTouchStart(event) {
+    if (event.target.id === 'moveLeft') {
+        keyboard.LEFT = true;
+    } else if (event.target.id === 'moveRight') {
+        keyboard.RIGHT = true;
+    } else if (event.target.id === 'jump') {
+        keyboard.SPACE = true;
+    } else if (event.target.id === 'throw') {
+        keyboard.D = true;
+    }
+}
+
+function handleTouchEnd() {
+    keyboard.LEFT = false;
+    keyboard.RIGHT = false;
+    keyboard.SPACE = false;
+    keyboard.D = false;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    moveLeftBtn = document.getElementById('moveLeft');
+    moveRightBtn = document.getElementById('moveRight');
+    jumpBtn = document.getElementById('jump');
+    throwBtn = document.getElementById('throw');
+
+    moveLeftBtn.addEventListener('touchstart', handleTouchStart);
+    moveRightBtn.addEventListener('touchstart', handleTouchStart);
+    jumpBtn.addEventListener('touchstart', handleTouchStart);
+    throwBtn.addEventListener('touchstart', handleTouchStart);
+
+    moveLeftBtn.addEventListener('touchend', handleTouchEnd);
+    moveRightBtn.addEventListener('touchend', handleTouchEnd);
+    jumpBtn.addEventListener('touchend', handleTouchEnd);
+    throwBtn.addEventListener('touchend', handleTouchEnd);
+});

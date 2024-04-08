@@ -153,7 +153,6 @@ class World {
         this.addToMap(this.healthBarEndboss);
         this.addObjectsToMap(this.throwableObjects);
 
-
         this.ctx.translate(-this.camera_x, 0);
         let self = this;
         requestAnimationFrame(function () {

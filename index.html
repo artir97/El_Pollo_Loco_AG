@@ -33,9 +33,28 @@
     <div id="startScreen" width="720" height="480">
         <button onclick="startGame()" id="playBtn">PLAY</button>
     </div>
-    <div id="fullScreen">
-        <canvas id="canvas" width="720" height="480"></canvas>
+   <!-- <div id="fullScreen">
+        <div class="menuControls">
+            <div id="enterFullscreen">
+                <img src="/img/10_buttons/fullscreen-enter.png" alt="">
+            </div>
+            <div id="exitFullscreen">
+
+            </div>
+        </div>
+
+    </div> -->
+    <div id="phoneControls">
+        <div class="leftControls">
+            <div class="phoneControls" id="moveLeft"> < </div>
+            <div class="phoneControls" id="moveRight"> > </div>
+        </div>
+        <div class="rightControls">
+            <div class="phoneControls" id="jump"> ^ </div>
+            <div class="phoneControls" id="throw"> throw </div>
+        </div>
     </div>
+    <canvas id="canvas" width="720" height="480"></canvas>
 
     <div class="controls">
         <p>Arrow Left / Arrow Right = Walk</p>
