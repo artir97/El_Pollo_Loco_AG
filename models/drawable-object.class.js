@@ -7,9 +7,7 @@ class DrawableObject {
     height = 150;
     width = 100;
 
-    
 
-    
     loadImage(path) {
         this.img = new Image();
         this.img.src = path;
@@ -21,7 +19,7 @@ class DrawableObject {
 
     }
 
-    
+
     drawFrame(ctx) {
         if (this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof ThrowableObject ||
             this instanceof Coin || this instanceof Bottle) {
