@@ -4,6 +4,7 @@ class Character extends MovableObject {
     height = 300;
     width = 150;
     speed = 10;
+    player_hurt_sound = new Audio('audio/player_hurt.mp3');
 
     offset = {
         top: 120,
@@ -90,6 +91,7 @@ class Character extends MovableObject {
                 gameOverScreen.classList.remove('d-none');
                 background_sound.pause();
             } else if (this.isHurt()) {
+                this.player_hurt_sound.play();
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);

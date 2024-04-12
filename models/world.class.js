@@ -12,6 +12,7 @@ class World {
     bottlebar = new BottleBar();
     healthBarEndboss = new HealthBarEndboss();
     throwableObjects = [];
+    enemy_hurt = new Audio('audio/enemy_hurt.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -46,6 +47,7 @@ class World {
             if (this.character.isAboveGround()) {
                 if (this.character.isColliding(enemy)) {
                     enemy.hit();
+                    this.enemy_hurt.play();
                     this.character.jump();
                 }
             }
@@ -107,11 +109,9 @@ class World {
         this.level.enemies.forEach((enemy) => {
             this.throwableObjects.forEach((bottle) => {
                 if (bottle.isColliding(enemy)) {
-                    console.log('Collision with Enemy');
-                    console.log(this.level.enemies.indexOf(enemy));
                     let indexOfEnemy = this.level.enemies.indexOf(enemy);
                     this.level.enemies[indexOfEnemy].hit();
-                    console.log(this.level.enemies[indexOfEnemy]);
+                    this.enemy_hurt.play();
                 }
             })
         })
@@ -123,6 +123,7 @@ class World {
             if (this.endboss.isColliding(bottle)) {
                 this.endboss.hit();
                 this.healthBarEndboss.setPercentage(this.endboss.energy);
+                this.enemy_hurt.play();
             }
         })
     }

@@ -8,6 +8,7 @@ class MovableObject extends DrawableObject {
     bottles = 0;
     lastHit = 0;
     coin_sound = new Audio('audio/collect_coin.mp3');
+    bottle_sound = new Audio('audio/collect_bottle.mp3');
 
 
     offset = {
@@ -74,6 +75,7 @@ class MovableObject extends DrawableObject {
 
     collectBottle() {
         this.bottles += 20;
+        this.bottle_sound.play()
         if (this.bottles > 100) {
             this.bottles = 100;
         }
