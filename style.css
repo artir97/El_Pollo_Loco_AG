@@ -44,6 +44,23 @@ h1 {
     aspect-ratio: auto 720 / 480;
 }
 
+#gameOverScreen {
+    position: absolute;
+    height: auto;
+    width: 100%;
+    max-width: 720px;
+    z-index: 2;
+}
+
+.d-none {
+    display: none;
+}
+
+#gameOverScreen img {
+    height: 480px;
+    width: 720px;
+}
+
 #phoneControls {
     position: absolute;
     max-width: 720px;

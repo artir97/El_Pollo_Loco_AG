@@ -83,8 +83,10 @@ class Character extends MovableObject {
         }, 1000 / 60)
 
         setInterval(() => {
+            const gameOverScreen = document.getElementById('gameOverScreen');
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                gameOverScreen.classList.remove('d-none');
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
