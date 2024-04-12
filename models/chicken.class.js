@@ -12,6 +12,8 @@ class Chicken extends MovableObject {
     IMAGES_DEAD = [
         'img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
     ];
+    chicken_sound = new Audio('audio/chicken.mp3');
+
 
 
     constructor() {
@@ -37,8 +39,10 @@ class Chicken extends MovableObject {
 
         setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
+            this.chicken_sound.play();
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                this.chicken_sound.pause();
             }
         }, 100)
     }
