@@ -7,6 +7,7 @@ class MovableObject extends DrawableObject {
     coins = 0;
     bottles = 0;
     lastHit = 0;
+    lastTimeMoved = new Date().getTime();
     coin_sound = new Audio('audio/collect_coin.mp3');
     bottle_sound = new Audio('audio/collect_bottle.mp3');
 
@@ -16,6 +17,12 @@ class MovableObject extends DrawableObject {
         left: 0,
         right: 0,
         bottom: 0
+    }
+
+    isIdle(idleDuration){
+        let currentTime = new Date().getTime();
+        let elapsedTime = currentTime - this.lastTimeMoved;
+        return elapsedTime >= idleDuration;
     }
 
     moveRight() {
@@ -32,7 +39,6 @@ class MovableObject extends DrawableObject {
         this.speedY = 30;
     }
 
-
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHit;
         timePassed = timePassed / 1000;
@@ -41,7 +47,7 @@ class MovableObject extends DrawableObject {
 
 
     isDead() {
-        return this.energy == 0;
+        return this.energy === 0;
     }
 
 
