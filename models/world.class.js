@@ -58,8 +58,6 @@ class World {
                     this.healthbar.setPercentage(this.character.energy);
                 }
             }
-
-
         });
     }
 

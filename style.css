@@ -33,7 +33,7 @@ h1 {
     background-image: url('img/9_intro_outro_screens/start/startscreen_1.png');
     background-size: cover;
     background-repeat: round;
-    z-index: 1;
+    z-index: 3;
     opacity: 1;
 
     display: flex;
@@ -131,9 +131,19 @@ h1 {
     width: 100%;
     height: auto;
     display: flex;
-    justify-content: start;
+    justify-content: end;
     align-items: start;
     aspect-ratio: auto 720 / 480;
+    z-index: 2;
+}
+
+.menuControls div {
+    padding-top: 20px;
+    padding-right: 20px;
+}
+
+.menuControls div img:hover {
+    cursor: pointer;
 }
 
 .controls {

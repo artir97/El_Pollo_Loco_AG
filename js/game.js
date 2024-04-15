@@ -88,7 +88,17 @@ function handleTouchEnd() {
     keyboard.D = false;
 }
 
+function pauseGameSound(){
+    background_sound.pause();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+    gameSoundBtn = document.getElementById('gameSound');
+    restartBtn = document.getElementById('restartGame');
+
+    gameSoundBtn.addEventListener('click', pauseGameSound);
+    restartBtn.addEventListener('click', startGame);
+
     moveLeftBtn = document.getElementById('moveLeft');
     moveRightBtn = document.getElementById('moveRight');
     jumpBtn = document.getElementById('jump');
