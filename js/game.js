@@ -17,6 +17,10 @@ function startGame() {
     startScreen.style = 'display: none';
 }
 
+function restartGame() {
+    window.location.reload();
+}
+
 window.addEventListener('keydown', (event) => {
     if (event.key === 'ArrowUp') {
         keyboard.UP = true;
@@ -88,16 +92,18 @@ function handleTouchEnd() {
     keyboard.D = false;
 }
 
-function pauseGameSound(){
+function pauseGameSound() {
     background_sound.pause();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     gameSoundBtn = document.getElementById('gameSound');
     restartBtn = document.getElementById('restartGame');
+    restratBtnGameOver = document.getElementById('GameOverRestartGame');
 
     gameSoundBtn.addEventListener('click', pauseGameSound);
-    restartBtn.addEventListener('click', startGame);
+    restartBtn.addEventListener('click', restartGame);
+    restratBtnGameOver.addEventListener('click', restartGame);
 
     moveLeftBtn = document.getElementById('moveLeft');
     moveRightBtn = document.getElementById('moveRight');

@@ -69,6 +69,7 @@ class Endboss extends MovableObject {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
                 gameOverScreen.classList.remove('d-none');
+                gameOverScreen.classList.add('d-flex');
                 background_sound.pause();
             }
         }, 200)

@@ -118,6 +118,7 @@ class Character extends MovableObject {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
                 gameOverScreen.classList.remove('d-none');
+                gameOverScreen.classList.add('d-flex');
                 background_sound.pause();
             } else if (this.isHurt()) {
                 this.player_hurt_sound.play();
