@@ -88,8 +88,10 @@ class Character extends MovableObject {
     }
 
 
+
     animate() {
         setInterval(() => {
+            this.checkSound(this.walking_sound);
             this.walking_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.otherDirection = false;
@@ -115,6 +117,8 @@ class Character extends MovableObject {
 
         setInterval(() => {
             const gameOverScreen = document.getElementById('gameOverScreen');
+            this.checkSound(background_sound);
+            this.checkSound(this.player_hurt_sound);
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
                 gameOverScreen.classList.remove('d-none');

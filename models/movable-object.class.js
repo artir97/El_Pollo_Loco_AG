@@ -72,6 +72,7 @@ class MovableObject extends DrawableObject {
 
 
     collectCoin() {
+        this.checkSound(this.coin_sound);
         this.coins += 20;
         this.coin_sound.play();
         if (this.coins > 100) {
@@ -80,6 +81,7 @@ class MovableObject extends DrawableObject {
     }
 
     collectBottle() {
+        this.checkSound(this.bottle_sound);
         this.bottles += 20;
         this.bottle_sound.play()
         if (this.bottles > 100) {

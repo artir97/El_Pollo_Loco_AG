@@ -7,6 +7,13 @@ class DrawableObject {
     height = 150;
     width = 100;
 
+    checkSound(sound){
+        if(soundTurnedOn()){
+            sound.volume = 1;
+        }else{
+            sound.volume = 0;
+        }
+    }
 
     loadImage(path) {
         this.img = new Image();

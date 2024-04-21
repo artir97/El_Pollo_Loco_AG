@@ -35,6 +35,7 @@ class ChickenSmall extends MovableObject {
 
         setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
+            this.checkSound(this.small_chicken_sound);
             this.small_chicken_sound.play();
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);

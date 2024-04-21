@@ -92,16 +92,29 @@ function handleTouchEnd() {
     keyboard.D = false;
 }
 
-function pauseGameSound() {
-    background_sound.pause();
+function pauseAndResumeGameSound() {
+    let soundIconDiv = document.getElementById('gameSoundDiv');
+    if (soundTurnedOn()) {
+        soundIconDiv.innerHTML =
+            '<img id="gameSound" src="img/10_menu_icons/sound_off.png" alt="sound off icon">';
+    } else {
+        soundIconDiv.innerHTML =
+            '<img id="gameSound" src="img/10_menu_icons/sound_on.png" alt="sound on icon">';
+    }
 }
 
+function soundTurnedOn() {
+    let soundIcon = document.getElementById('gameSound');
+    return soundIcon.src.includes('img/10_menu_icons/sound_on.png');
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
-    gameSoundBtn = document.getElementById('gameSound');
+    gameSoundBtn = document.getElementById('gameSoundDiv');
     restartBtn = document.getElementById('restartGame');
     restratBtnGameOver = document.getElementById('GameOverRestartGame');
 
-    gameSoundBtn.addEventListener('click', pauseGameSound);
+    gameSoundBtn.addEventListener('click', pauseAndResumeGameSound);
     restartBtn.addEventListener('click', restartGame);
     restratBtnGameOver.addEventListener('click', restartGame);
 

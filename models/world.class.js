@@ -23,6 +23,14 @@ class World {
         this.run();
     }
 
+    checkSoundWorld(sound){
+        if(soundTurnedOn()){
+            sound.volume = 1;
+        }else{
+            sound.volume = 0;
+        }
+    }
+
 
     run() {
         setInterval(() => {
@@ -42,6 +50,7 @@ class World {
 
 
     checkCollisionWithEnemy() {
+        this.checkSoundWorld(this.enemy_hurt);
         this.level.enemies.forEach((enemy) => {
 
             if (this.character.isAboveGround()) {
