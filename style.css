@@ -32,8 +32,8 @@ h1 {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-color: #ffa700;
     color: white;
     font-size: 32px;
@@ -44,6 +44,10 @@ h1 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.turnDeviceScreenText {
+    text-align: center;
 }
 
 #startScreen {
@@ -257,6 +261,14 @@ h1 {
 }
 
 @media (orientation: portrait) {
+    #startScreen,
+    canvas,
+    .phoneControls,
+    #phoneControls,
+    .menuControls {
+        display: none;
+    }
+
     .turnDeviceScreen {
         display: flex;
     }
