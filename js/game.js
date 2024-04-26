@@ -7,14 +7,15 @@ function init() {
     canvas = document.getElementById("canvas");
     initLevel1();
     world = new World(canvas, keyboard);
-    background_sound.loop = true;
-    background_sound.play();
+
 }
 
 function startGame() {
     init();
     let startScreen = document.getElementById('startScreen');
     startScreen.style = 'display: none';
+    background_sound.loop = true;
+    background_sound.play();
 }
 
 function restartGame() {

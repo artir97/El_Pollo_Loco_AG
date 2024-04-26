@@ -97,7 +97,7 @@ h1 {
 
 #gameOverScreen img {
     height: 100%;
-    width: 100% ;
+    width: 100%;
 }
 
 #phoneControls {
@@ -203,9 +203,11 @@ h1 {
     .gameContainer {
         height: 100vh;
     }
+
     h1 {
         display: none;
     }
+
     #startScreen {
         max-width: none;
         max-height: none;
@@ -213,11 +215,13 @@ h1 {
         width: 100vw;
         aspect-ratio: auto;
     }
+
     .menuControls {
         height: 100vh;
         max-width: none;
         max-height: none;
     }
+
     #phoneControls {
         height: 100vh;
         max-width: none;
@@ -228,9 +232,19 @@ h1 {
         z-index: 2;
     }
 
+    #gameOverScreen {
+        max-width: none;
+        height: 100%;
+    }
+
+    #gameOverScreen #GameOverRestartGame {
+        padding-right: 40px;
+    }
+
     #restartGame {
         padding-right: 20px;
     }
+
     canvas {
         z-index: -2;
         background-color: black;
@@ -249,9 +263,7 @@ h1 {
 }
 
 @media only screen and (max-height: 480px) {
-    canvas {
-        /*height: 100vh;*/
-    }
+
 }
 
 @media (orientation: landscape) {

@@ -60,7 +60,6 @@ class Endboss extends MovableObject {
     animate() {
         setInterval(() => {
             const gameOverScreen = document.getElementById('gameOverScreen');
-
             this.playAnimation(this.IMAGES_ALERT);
             if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
