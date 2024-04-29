@@ -137,6 +137,21 @@ h1 {
     aspect-ratio: auto 720 / 480;
 }
 
+.legalsScreen {
+    overflow: auto;
+    background-color: #ffa700;
+    z-index: 25;
+    position: absolute;
+    max-width: 720px;
+    max-height: 480px;
+    width: 100%;
+    height: auto;
+    justify-content: space-between;
+    align-items: flex-end;
+    aspect-ratio: auto 720 / 480;
+    font-size: 25px;
+}
+
 .phoneControls {
     height: 35px;
     width: 35px;
@@ -169,7 +184,7 @@ h1 {
     gap: 20px;
 }
 
-#playBtn, #controlsBtn {
+#playBtn, #controlsBtn, .returnToGameBtn {
     height: 50px;
     width: 125px;
     background-color: #ffc500;
@@ -182,10 +197,10 @@ h1 {
     font-family: 'zabars';
     font-size: 20px;
     letter-spacing: 5px;
-    transition: color 100ms ease-in-out; /* Applying the transition to the color property */
+    transition: color 100ms ease-in-out;
 }
 
-#playBtn:hover, #controlsBtn:hover {
+#playBtn:hover, #controlsBtn:hover, .returnToGameBtn:hover {
     background-color: #ffa700;
     cursor: pointer;
     color: #fff;
@@ -266,7 +281,7 @@ h1 {
         display: none;
     }
 
-    #startScreen {
+    #startScreen, .controlsScreen, .legalsScreen {
         max-width: none;
         max-height: none;
         height: 100vh;
@@ -274,21 +289,7 @@ h1 {
         aspect-ratio: auto;
     }
 
-    .controlsScreen {
-        max-width: none;
-        max-height: none;
-        height: 100vh;
-        width: 100vw;
-        aspect-ratio: auto;
-    }
-
-    .menuControls {
-        height: 100vh;
-        max-width: none;
-        max-height: none;
-    }
-
-    #phoneControls {
+    .menuControls, #phoneControls {
         height: 100vh;
         max-width: none;
         max-height: none;

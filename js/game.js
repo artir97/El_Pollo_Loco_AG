@@ -31,8 +31,31 @@ function openControlsPage() {
 
 function closeControlsPage() {
     const controlsScreen = document.getElementById('controlsScreen');
-    controlsScreen.classList.remove('d-flex');
     controlsScreen.classList.add('d-none');
+}
+
+function openLegals(doc) {
+    const legalsScreen = document.getElementById('legalsScreen');
+    legalsScreen.classList.remove('d-none');
+
+    let url;
+    if (doc === 'data') {
+        url = '../datenschutz.html';
+    } else if (doc === 'imp') {
+        url = '../impressum.html';
+    }
+
+    fetch(url)
+        .then(response => response.text())
+        .then(html => {
+            legalsScreen.innerHTML = html;
+        })
+        .catch(error => console.error('Error fetching HTML:', error));
+}
+
+function closeLegals() {
+    const legalsScreen = document.getElementById('legalsScreen');
+    legalsScreen.classList.add('d-none');
 }
 
 function playBackGroundSound() {
