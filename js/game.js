@@ -1,3 +1,5 @@
+// noinspection LanguageDetectionInspection
+
 let canvas;
 let world;
 let keyboard = new Keyboard();
@@ -17,8 +19,20 @@ function startGame() {
 }
 
 function removeStartScreen() {
-    let startScreen = document.getElementById('startScreen');
+    const startScreen = document.getElementById('startScreen');
     startScreen.style = 'display: none';
+}
+
+function openControlsPage() {
+    const controlsScreen = document.getElementById('controlsScreen');
+    controlsScreen.classList.remove('d-none');
+    controlsScreen.classList.add('d-flex');
+}
+
+function closeControlsPage() {
+    const controlsScreen = document.getElementById('controlsScreen');
+    controlsScreen.classList.remove('d-flex');
+    controlsScreen.classList.add('d-none');
 }
 
 function playBackGroundSound() {

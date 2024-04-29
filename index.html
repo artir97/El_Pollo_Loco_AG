@@ -41,15 +41,23 @@
     </div>
 
     <div id="startScreen">
-        <button onclick="startGame()" id="playBtn">PLAY</button>
-        <div class="controls">
-            <p>Arrow Left / Arrow Right = Walk</p>
-            <p>SpaceBar = Jump</p>
-            <p>D = Throw Bottle</p>
+        <div>
+            <button onclick="startGame()" id="playBtn">PLAY</button>
+            <button onclick="openControlsPage()" id="controlsBtn">CONTROLS</button>
         </div>
+
         <div class="legals">
             <a href="impressum.html">IMPRESSUM</a>
             <a href="datenschutz.html">DATENSCHUTZ</a>
+        </div>
+    </div>
+
+    <div id="controlsScreen" class="controlsScreen d-none">
+        <div class="controls">
+            <p onclick="closeControlsPage()">CLOSE CONTROLS</p>
+            <p>Arrow Left / Arrow Right = Walk</p>
+            <p>SpaceBar = Jump</p>
+            <p>D = Throw Bottle</p>
         </div>
     </div>
 
