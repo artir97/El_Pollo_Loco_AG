@@ -16,6 +16,7 @@ function startGame() {
     startScreen.style = 'display: none';
     background_sound.loop = true;
     background_sound.play();
+    background_sound.volume = 0;
 }
 
 function restartGame() {
