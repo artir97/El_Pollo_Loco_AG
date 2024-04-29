@@ -65,8 +65,17 @@ function playBackGroundSound() {
 }
 
 function restartGame() {
+    localStorage.setItem('shouldStartGame', 'true');
     window.location.reload();
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    const shouldStartGame = localStorage.getItem('shouldStartGame');
+    if (shouldStartGame === 'true') {
+        startGame();
+        localStorage.removeItem('shouldStartGame'); // Remove the flag after starting the game
+    }
+});
 
 window.addEventListener('keydown', (event) => {
     if (event.key === 'ArrowUp') {
