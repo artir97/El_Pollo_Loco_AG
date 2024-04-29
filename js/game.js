@@ -12,8 +12,16 @@ function init() {
 
 function startGame() {
     init();
+    removeStartScreen();
+    playBackGroundSound();
+}
+
+function removeStartScreen() {
     let startScreen = document.getElementById('startScreen');
     startScreen.style = 'display: none';
+}
+
+function playBackGroundSound() {
     background_sound.loop = true;
     background_sound.play();
     background_sound.volume = 0;
@@ -96,12 +104,13 @@ function handleTouchEnd() {
 
 function pauseAndResumeGameSound() {
     let soundIconDiv = document.getElementById('gameSoundDiv');
+    let soundIconOn = '<img id="gameSound" src="img/10_menu_icons/sound_on.png" alt="sound on icon">';
+    let soundIconOff = '<img id="gameSound" src="img/10_menu_icons/sound_off.png" alt="sound off icon">';
+
     if (soundTurnedOn()) {
-        soundIconDiv.innerHTML =
-            '<img id="gameSound" src="img/10_menu_icons/sound_off.png" alt="sound off icon">';
+        soundIconDiv.innerHTML = soundIconOff;
     } else {
-        soundIconDiv.innerHTML =
-            '<img id="gameSound" src="img/10_menu_icons/sound_on.png" alt="sound on icon">';
+        soundIconDiv.innerHTML = soundIconOn;
     }
 }
 
@@ -109,7 +118,6 @@ function soundTurnedOn() {
     let soundIcon = document.getElementById('gameSound');
     return soundIcon.src.includes('img/10_menu_icons/sound_on.png');
 }
-
 
 document.addEventListener("DOMContentLoaded", () => {
     gameSoundBtn = document.getElementById('gameSoundDiv');

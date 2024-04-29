@@ -11,7 +11,6 @@ class MovableObject extends DrawableObject {
     coin_sound = new Audio('audio/collect_coin.mp3');
     bottle_sound = new Audio('audio/collect_bottle.mp3');
 
-
     offset = {
         top: 0,
         left: 0,
@@ -19,7 +18,7 @@ class MovableObject extends DrawableObject {
         bottom: 0
     }
 
-    isIdle(idleDuration){
+    isIdle(idleDuration) {
         let currentTime = new Date().getTime();
         let elapsedTime = currentTime - this.lastTimeMoved;
         return elapsedTime >= idleDuration;
@@ -29,11 +28,9 @@ class MovableObject extends DrawableObject {
         this.x += this.speed;
     }
 
-
     moveLeft() {
         this.x -= this.speed;
     }
-
 
     jump() {
         this.speedY = 30;
@@ -45,11 +42,9 @@ class MovableObject extends DrawableObject {
         return timePassed < 1;
     }
 
-
     isDead() {
         return this.energy === 0;
     }
-
 
     hit() {
         this.energy -= 5;
@@ -60,7 +55,6 @@ class MovableObject extends DrawableObject {
         }
     }
 
-
     isColliding(obj) {
         return (
             this.x + this.width - this.offset.right > obj.x + obj.offset.left &&
@@ -69,7 +63,6 @@ class MovableObject extends DrawableObject {
             this.y + this.offset.top < obj.y + obj.height - obj.offset.bottom
         );
     }
-
 
     collectCoin() {
         this.checkSound(this.coin_sound);
@@ -89,7 +82,6 @@ class MovableObject extends DrawableObject {
         }
     }
 
-
     isAboveGround() {
         if (this instanceof ThrowableObject) {
             return true;
@@ -97,7 +89,6 @@ class MovableObject extends DrawableObject {
             return this.y <= 140;
         }
     }
-
 
     applyGravity() {
         setInterval(() => {
@@ -107,7 +98,6 @@ class MovableObject extends DrawableObject {
             }
         }, 1000 / 25);
     }
-
 
     playAnimation(images) {
         let i = this.currentImage % images.length;

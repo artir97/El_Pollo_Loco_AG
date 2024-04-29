@@ -7,10 +7,10 @@ class DrawableObject {
     height = 150;
     width = 100;
 
-    checkSound(sound){
-        if(soundTurnedOn()){
+    checkSound(sound) {
+        if (soundTurnedOn()) {
             sound.volume = 1;
-        }else{
+        } else {
             sound.volume = 0;
         }
     }
@@ -20,28 +20,9 @@ class DrawableObject {
         this.img.src = path;
     }
 
-
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
 
-    }
-
-
-    drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken || this instanceof ChickenSmall || this instanceof Endboss || this instanceof ThrowableObject ||
-            this instanceof Coin || this instanceof Bottle) {
-            // ctx.beginPath();
-            // ctx.lineWidth = '5';
-            // ctx.strokeStyle = 'blue';
-            // ctx.rect(this.x, this.y, this.width, this.height);
-            // ctx.stroke();
-
-            //ctx.beginPath();
-            //ctx.lineWidth = '5';
-            //ctx.strokeStyle = 'red'; // Choose a different color for offset
-            //ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right - this.offset.left, this.height - this.offset.bottom - this.offset.top);
-            //ctx.stroke();
-        }
     }
 
     loadImages(arr) {
@@ -61,7 +42,7 @@ class DrawableObject {
     }
 
     resolveImageIndex() {
-        if (this.percentage == 100) {
+        if (this.percentage === 100) {
             return 5;
         } else if (this.percentage >= 80) {
             return 4;

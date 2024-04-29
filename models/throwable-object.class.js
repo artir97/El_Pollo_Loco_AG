@@ -30,7 +30,6 @@ class ThrowableObject extends MovableObject {
 
     animate() {
         setInterval(() => {
-
             if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_FLYING_BOTTLE);
             }
