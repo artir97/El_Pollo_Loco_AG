@@ -21,6 +21,30 @@ body {
     font-family: 'zabars', Arial, Helvetica, sans-serif;
 }
 
+.legals a {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    color: #000;
+    text-decoration: none;
+    font-family: 'zabars';
+    height: 50px;
+    width: 100px;
+    background-color: #ffc500;
+    border-radius: 10px;
+    border: 3px solid #000;
+    font-size: 20px;
+    letter-spacing: 5px;
+    transition: color 100ms ease-in-out;
+}
+
+.legals a:hover {
+    background-color: #ffa700;
+    cursor: pointer;
+    color: #fff;
+    border: 3px solid #fff;
+}
+
 h1 {
     font-size: 70px;
     letter-spacing: 5px;
@@ -155,6 +179,7 @@ h1 {
     font-family: 'zabars';
     font-size: 20px;
     letter-spacing: 5px;
+    transition: color 100ms ease-in-out; /* Applying the transition to the color property */
 }
 
 #playBtn:hover {

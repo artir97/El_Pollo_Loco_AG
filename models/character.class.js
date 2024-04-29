@@ -70,6 +70,7 @@ class Character extends MovableObject {
     ];
     world;
     walking_sound = new Audio('audio/walking.mp3');
+    snoring_sound = new Audio('audio/snoring.mp3');
 
     /**
      * Creates an instance of Character.
@@ -174,10 +175,13 @@ class Character extends MovableObject {
             this.playCharacterDeadAnimation();
         } else if (this.isHurt()) {
             this.player_hurt_sound.play();
+            this.snoring_sound.pause();
             this.playAnimation(this.IMAGES_HURT);
         } else if (this.isAboveGround()) {
+            this.snoring_sound.pause();
             this.playAnimation(this.IMAGES_JUMPING);
         } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+            this.snoring_sound.pause();
             this.playAnimation(this.IMAGES_WALKING);
         }
     }
@@ -205,6 +209,8 @@ class Character extends MovableObject {
         }
         if (this.isIdle(5000)) {
             this.playAnimation(this.IMAGES_LONG_IDLE);
+            this.snoring_sound.loop;
+            this.snoring_sound.play();
         }
     }
 
