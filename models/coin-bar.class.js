@@ -9,6 +9,10 @@ class CoinBar extends DrawableObject {
     ];
     percentage = 0;
 
+    /**
+     * Creates an instance of CoinBar.
+     * @constructor
+     */
     constructor() {
         super();
         this.loadImages(this.IMAGES);

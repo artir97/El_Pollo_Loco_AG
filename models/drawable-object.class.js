@@ -7,6 +7,11 @@ class DrawableObject {
     height = 150;
     width = 100;
 
+    /**
+     * Checks whether to turn the sound on or off.
+     * @param {Audio} sound - The sound to be checked.
+     * @returns {void}
+     */
     checkSound(sound) {
         if (soundTurnedOn()) {
             sound.volume = 1;
@@ -15,16 +20,31 @@ class DrawableObject {
         }
     }
 
+    /**
+     * Loads an image from the given path.
+     * @param {string} path - The path to the image.
+     * @returns {void}
+     */
     loadImage(path) {
         this.img = new Image();
         this.img.src = path;
     }
 
+    /**
+     * Draws the drawable object onto the canvas context.
+     * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+     * @returns {void}
+     */
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
 
     }
 
+    /**
+     * Loads images from an array of paths into the image cache.
+     * @param {string[]} arr - Array of image paths.
+     * @returns {void}
+     */
     loadImages(arr) {
         arr.forEach(path => {
             let img = new Image();
@@ -33,6 +53,11 @@ class DrawableObject {
         });
     }
 
+    /**
+     * Sets the percentage value and updates the image accordingly.
+     * @param {number} percentage - The percentage value.
+     * @returns {void}
+     */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES[this.resolveImageIndex()];
@@ -41,6 +66,10 @@ class DrawableObject {
 
     }
 
+    /**
+     * Resolves the index of the image based on the percentage value.
+     * @returns {number} - The index of the image.
+     */
     resolveImageIndex() {
         if (this.percentage === 100) {
             return 5;

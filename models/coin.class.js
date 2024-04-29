@@ -10,6 +10,12 @@ class Coin extends MovableObject {
         'img/8_coin/coin_2.png'
     ];
 
+    /**
+     * Creates an instance of Coin.
+     * @constructor
+     * @param {number} x - The x-coordinate position of the coin.
+     * @param {number} y - The y-coordinate position of the coin.
+     */
     constructor(x, y) {
         super();
         this.loadImage('img/8_coin/coin_1.png');
@@ -20,5 +26,4 @@ class Coin extends MovableObject {
         this.x = x;
         this.y = y;
     }
-
 }

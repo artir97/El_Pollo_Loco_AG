@@ -14,6 +14,11 @@ class ChickenSmall extends MovableObject {
         'img/3_enemies_chicken/chicken_small/2_dead/dead.png'
     ];
     small_chicken_sound = new Audio('audio/chicken_chirping.mp3');
+
+    /**
+     * Creates an instance of ChickenSmall.
+     * @constructor
+     */
     constructor() {
         super();
         this.loadImage('img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
@@ -24,21 +29,36 @@ class ChickenSmall extends MovableObject {
         this.animate()
     }
 
-    animate() {
-        setInterval(() => {
-            if (!this.isDead()) {
-                this.moveLeft();
-            }
-        }, 1000 / 60);
+    /**
+     * Moves the small chicken to the left if it's not dead.
+     * @returns {void}
+     */
+    smallChickenMoveLeft() {
+        if (!this.isDead()) {
+            this.moveLeft();
+        }
+    }
 
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
-            this.checkSound(this.small_chicken_sound);
-            this.small_chicken_sound.play();
-            if (this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD);
-                this.small_chicken_sound.pause();
-            }
-        }, 100)
+    /**
+     * Plays the animation for the small chicken.
+     * @returns {void}
+     */
+    playSmallChickenAnimation() {
+        this.playAnimation(this.IMAGES_WALKING);
+        this.checkSound(this.small_chicken_sound);
+        this.small_chicken_sound.play();
+        if (this.isDead()) {
+            this.playAnimation(this.IMAGES_DEAD);
+            this.small_chicken_sound.pause();
+        }
+    }
+
+    /**
+     * Initiates animation loops for the small chicken.
+     * @returns {void}
+     */
+    animate() {
+        setInterval(() => this.smallChickenMoveLeft(), 1000 / 60);
+        setInterval(() => this.playSmallChickenAnimation(), 100);
     }
 }

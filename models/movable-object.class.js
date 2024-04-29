@@ -18,34 +18,59 @@ class MovableObject extends DrawableObject {
         bottom: 0
     }
 
+    /**
+     * Checks if the object is idle.
+     * @param {number} idleDuration - The duration threshold for idle state in milliseconds.
+     * @returns {boolean} - Indicates if the object is idle.
+     */
     isIdle(idleDuration) {
         let currentTime = new Date().getTime();
         let elapsedTime = currentTime - this.lastTimeMoved;
         return elapsedTime >= idleDuration;
     }
 
+    /**
+     * Moves the object to the right.
+     */
     moveRight() {
         this.x += this.speed;
     }
 
+    /**
+     * Moves the object to the left.
+     */
     moveLeft() {
         this.x -= this.speed;
     }
 
+    /**
+     * Initiates a jump for the object.
+     */
     jump() {
         this.speedY = 30;
     }
 
+    /**
+     * Checks if the object is hurt.
+     * @returns {boolean} - Indicates if the object is hurt.
+     */
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHit;
         timePassed = timePassed / 1000;
         return timePassed < 1;
     }
 
+    /**
+     * Checks if the object is dead.
+     * @returns {boolean} - Indicates if the object is dead.
+     */
     isDead() {
         return this.energy === 0;
     }
 
+    /**
+     * Handles a hit on the object.
+     */
     hit() {
         this.energy -= 5;
         if (this.energy < 0) {
@@ -55,6 +80,11 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    /**
+     * Checks if the object is colliding with another object.
+     * @param {Object} obj - The object to check collision with.
+     * @returns {boolean} - Indicates if a collision occurred.
+     */
     isColliding(obj) {
         return (
             this.x + this.width - this.offset.right > obj.x + obj.offset.left &&
@@ -64,6 +94,10 @@ class MovableObject extends DrawableObject {
         );
     }
 
+
+    /**
+     * Collects a coin.
+     */
     collectCoin() {
         this.checkSound(this.coin_sound);
         this.coins += 20;
@@ -73,6 +107,9 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    /**
+     * Collects a bottle.
+     */
     collectBottle() {
         this.checkSound(this.bottle_sound);
         this.bottles += 20;
@@ -82,6 +119,10 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    /**
+     * Checks if the object is above the ground.
+     * @returns {boolean} - Indicates if the object is above the ground.
+     */
     isAboveGround() {
         if (this instanceof ThrowableObject) {
             return true;
@@ -90,6 +131,9 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    /**
+     * Applies gravity to the object.
+     */
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -99,6 +143,10 @@ class MovableObject extends DrawableObject {
         }, 1000 / 25);
     }
 
+    /**
+     * Plays animation for the object.
+     * @param {string[]} images - Array of image paths for the animation.
+     */
     playAnimation(images) {
         let i = this.currentImage % images.length;
         let path = images[i];

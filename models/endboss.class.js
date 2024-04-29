@@ -42,6 +42,10 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/5_dead/G26.png'
     ];
 
+    /**
+     * Creates an instance of Endboss.
+     * @constructor
+     */
     constructor() {
         super();
         this.loadImage(this.IMAGES_ALERT[0]);
@@ -57,27 +61,39 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Initiates animation for the end boss.
+     * @returns {void}
+     */
     animate() {
         setInterval(() => this.playEndBossAnimation(), 200);
     }
 
-    playEndBossAnimation() {
-        this.playEndBossAlertAnimation();
-        this.playEndBossHurtAnimation();
-        this.playEndBossDeadAnimation();
 
-    }
+
+    /**
+     * Plays the end boss alert animation.
+     * @returns {void}
+     */
     playEndBossAlertAnimation() {
         this.playAnimation(this.IMAGES_ALERT);
 
     }
 
+    /**
+     * Plays the end boss hurt animation if the boss is hurt.
+     * @returns {void}
+     */
     playEndBossHurtAnimation() {
         if (this.isHurt()) {
             this.playAnimation(this.IMAGES_HURT);
         }
     }
 
+    /**
+     * Plays the end boss dead animation and displays the game over screen if the boss is dead.
+     * @returns {void}
+     */
     playEndBossDeadAnimation() {
         if (this.isDead()) {
             const gameOverScreen = document.getElementById('gameOverScreen');
@@ -87,5 +103,16 @@ class Endboss extends MovableObject {
             gameOverScreen.classList.add('d-flex');
             background_sound.pause();
         }
+    }
+
+    /**
+     * Plays the animations for the end boss.
+     * @returns {void}
+     */
+    playEndBossAnimation() {
+        this.playEndBossAlertAnimation();
+        this.playEndBossHurtAnimation();
+        this.playEndBossDeadAnimation();
+
     }
 }

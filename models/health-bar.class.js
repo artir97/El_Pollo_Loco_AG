@@ -9,6 +9,10 @@ class HealthBar extends DrawableObject {
     ];
     percentage = 100;
 
+    /**
+     * Creates an instance of HealthBar.
+     * @constructor
+     */
     constructor() {
         super();
         this.loadImages(this.IMAGES);

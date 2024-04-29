@@ -9,6 +9,11 @@ class HealthBarEndboss extends DrawableObject {
     ];
     percentage = 100;
 
+
+    /**
+     * Creates an instance of HealthBarEndboss.
+     * @constructor
+     */
     constructor() {
         super();
         this.loadImages(this.IMAGES);

@@ -6,6 +6,12 @@ class ThrowableObject extends MovableObject {
         'img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png',
     ];
 
+    /**
+     * Creates an instance of ThrowableObject.
+     * @constructor
+     * @param {number} x - The initial x-coordinate of the object.
+     * @param {number} y - The initial y-coordinate of the object.
+     */
     constructor(x, y) {
         super();
         this.x = x;
@@ -20,6 +26,9 @@ class ThrowableObject extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Throws the throwable object.
+     */
     throw() {
         this.speedY = 30;
         this.applyGravity();
@@ -28,6 +37,9 @@ class ThrowableObject extends MovableObject {
         }, 25);
     }
 
+    /**
+     * Animates the throwable object.
+     */
     animate() {
         setInterval(() => {
             if (this.isAboveGround()) {

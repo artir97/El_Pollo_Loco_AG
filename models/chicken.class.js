@@ -14,6 +14,10 @@ class Chicken extends MovableObject {
     ];
     chicken_sound = new Audio('audio/chicken.mp3');
 
+    /**
+     * Creates an instance of Chicken.
+     * @constructor
+     */
     constructor() {
         super();
         this.loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
@@ -25,21 +29,36 @@ class Chicken extends MovableObject {
         this.animate();
     }
 
-    animate() {
-        setInterval(() => {
-            if (!this.isDead()) {
-                this.moveLeft();
-            }
-        }, 1000 / 60);
+    /**
+     * Moves the chicken to the left if it's not dead.
+     * @returns {void}
+     */
+    chickenMoveLeft() {
+        if (!this.isDead()) {
+            this.moveLeft();
+        }
+    }
 
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
-            this.checkSound(this.chicken_sound);
-            this.chicken_sound.play();
-            if (this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD);
-                this.chicken_sound.pause();
-            }
-        }, 100)
+    /**
+     * Plays the animation for the chicken.
+     * @returns {void}
+     */
+    playChickenAnimation() {
+        this.playAnimation(this.IMAGES_WALKING);
+        this.checkSound(this.chicken_sound);
+        this.chicken_sound.play();
+        if (this.isDead()) {
+            this.playAnimation(this.IMAGES_DEAD);
+            this.chicken_sound.pause();
+        }
+    }
+
+    /**
+     * Initiates animation loops for the chicken.
+     * @returns {void}
+     */
+    animate() {
+        setInterval(() => this.chickenMoveLeft(), 1000 / 60);
+        setInterval(() => this.playChickenAnimation(), 100);
     }
 }

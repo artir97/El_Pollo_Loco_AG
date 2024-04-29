@@ -9,6 +9,10 @@ class BottleBar extends DrawableObject {
     ];
     percentage = 0;
 
+    /**
+     * Creates an instance of BottleBar.
+     * @constructor
+     */
     constructor() {
         super();
         this.loadImages(this.IMAGES);
@@ -18,6 +22,4 @@ class BottleBar extends DrawableObject {
         this.height = 70;
         this.setPercentage(this.percentage);
     }
-
-
 }

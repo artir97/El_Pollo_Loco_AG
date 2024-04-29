@@ -71,6 +71,10 @@ class Character extends MovableObject {
     world;
     walking_sound = new Audio('audio/walking.mp3');
 
+    /**
+     * Creates an instance of Character.
+     * @constructor
+     */
     constructor() {
         super();
         this.loadImage('img/2_character_pepe/2_walk/W-21.png');
@@ -83,6 +87,11 @@ class Character extends MovableObject {
         this.applyGravity();
         this.animate();
     }
+
+    /**
+     * Moves the character based on user input and updates game world accordingly.
+     * @returns {void}
+     */
 
     moveCharacter() {
         this.checkSound(this.walking_sound);
@@ -99,18 +108,34 @@ class Character extends MovableObject {
         this.world.camera_x = -this.x + 100;
     }
 
+    /**
+     * Checks if the character can move right.
+     * @returns {boolean} - Indicates if the character can move right.
+     */
     canMoveRight() {
         return this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x;
     }
 
+    /**
+     * Checks if the character can move left.
+     * @returns {boolean} - Indicates if the character can move left.
+     */
     canMoveLeft() {
         return this.world.keyboard.LEFT && this.x > 0;
     }
 
+    /**
+     * Checks if the character can jump.
+     * @returns {boolean} - Indicates if the character can jump.
+     */
     canJump() {
         return this.world.keyboard.SPACE && !this.isAboveGround();
     }
 
+    /**
+     * Moves the character to the right.
+     * @returns {void}
+     */
     moveRight() {
         this.otherDirection = false;
         super.moveRight();
@@ -118,6 +143,10 @@ class Character extends MovableObject {
         this.walking_sound.play();
     }
 
+    /**
+     * Moves the character to the left.
+     * @returns {void}
+     */
     moveLeft() {
         this.otherDirection = true;
         super.moveLeft();
@@ -125,11 +154,19 @@ class Character extends MovableObject {
         this.walking_sound.play();
     }
 
+    /**
+     * Makes the character jump.
+     * @returns {void}
+     */
     jump() {
         super.jump();
         this.lastTimeMoved = new Date().getTime();
     }
 
+    /**
+     * Plays appropriate animation based on character state.
+     * @returns {void}
+     */
     playCharacterAnimation() {
         this.checkSound(background_sound);
         this.checkSound(this.player_hurt_sound);
@@ -145,6 +182,10 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * Plays dead animation for the character and displays game over screen.
+     * @returns {void}
+     */
     playCharacterDeadAnimation() {
         const gameOverScreen = document.getElementById('gameOverScreen');
 
@@ -154,6 +195,10 @@ class Character extends MovableObject {
         background_sound.pause();
     }
 
+    /**
+     * Plays idle animation for the character based on idle duration.
+     * @returns {void}
+     */
     playCharacterIdleAnimation() {
         if (this.isIdle(1000)) {
             this.playAnimation(this.IMAGES_IDLE);
@@ -163,10 +208,13 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * Initiates animation loops for character movement and state.
+     * @returns {void}
+     */
     animate() {
         setInterval(() => this.moveCharacter(), 1000 / 60);
         setInterval(() => this.playCharacterAnimation(), 1000 / 24);
         setInterval(() => this.playCharacterIdleAnimation(), 1000 / 5);
     }
-
 }

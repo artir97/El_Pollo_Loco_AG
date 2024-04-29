@@ -1,5 +1,10 @@
 let level1;
 
+/**
+ * Initializes level 1 with specified game elements.
+ * @function initLevel1
+ * @returns {void}
+ */
 function initLevel1() {
     level1 = new Level(
         [
