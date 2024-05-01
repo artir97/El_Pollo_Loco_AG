@@ -20,6 +20,9 @@ class DrawableObject {
         }
     }
 
+    /**
+     * Displays the game over screen by removing the 'd-none' class and adding the 'd-flex' class.
+     */
     showGameOverScreen() {
         const gameOverScreen = document.getElementById('gameOverScreen');
         gameOverScreen.classList.remove('d-none');
