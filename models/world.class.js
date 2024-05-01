@@ -63,13 +63,16 @@ class World {
     }
 
     /**
-     * Checks collision between the character and enemies, and performs corresponding actions.
+     * Checks collision with enemies, applies sound effects, and removes defeated enemies.
      */
     checkCollisionWithEnemy() {
         this.checkSoundWorld(this.enemy_hurt);
-        this.level.enemies.forEach((enemy) => {
+        this.level.enemies.forEach((enemy, index) => {
             this.characterJumpsOnEnemy(enemy);
             this.characterCollidesWithEnemy(enemy);
+            if (enemy.energy <= 0) {
+                    this.level.enemies.splice(index, 1);
+            }
         });
     }
 

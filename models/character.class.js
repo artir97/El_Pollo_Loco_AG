@@ -204,6 +204,7 @@ class Character extends MovableObject {
      * @returns {void}
      */
     playCharacterIdleAnimation() {
+        this.checkSound(this.snoring_sound);
         if (this.isIdle(1000)) {
             this.playAnimation(this.IMAGES_IDLE);
         }

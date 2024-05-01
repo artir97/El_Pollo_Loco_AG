@@ -70,12 +70,12 @@ class MovableObject extends DrawableObject {
 
     /**
      * Reduces the energy of the object when hit.
-     * For Endboss instances, energy is reduced by 2.5; for other instances, energy is reduced by 5.
+     * For Endboss instances, energy is reduced by 3; for other instances, energy is reduced by 5.
      * @returns {void}
      */
     hit() {
         if(this instanceof Endboss) {
-            this.energy -= 2.5;
+            this.energy -= 3;
         }else {
             this.energy -= 5;
         }
