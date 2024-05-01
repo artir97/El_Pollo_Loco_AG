@@ -1,5 +1,3 @@
-// noinspection LanguageDetectionInspection
-
 let canvas;
 let world;
 let keyboard = new Keyboard();
@@ -16,6 +14,14 @@ function startGame() {
     init();
     removeStartScreen();
     playBackGroundSound();
+}
+
+function stopGame() {
+    clearAllIntervals();
+}
+
+function clearAllIntervals() {
+    for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
 
 function removeStartScreen() {
@@ -168,7 +174,7 @@ function soundTurnedOn() {
 document.addEventListener("DOMContentLoaded", () => {
     gameSoundBtn = document.getElementById('gameSoundDiv');
     restartBtn = document.getElementById('restartGame');
-    restratBtnGameOver = document.getElementById('GameOverRestartGame');
+    restratBtnGameOver = document.getElementById('gameOverRestartGame');
 
     gameSoundBtn.addEventListener('click', pauseAndResumeGameSound);
     restartBtn.addEventListener('click', restartGame);

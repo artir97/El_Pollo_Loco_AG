@@ -20,6 +20,12 @@ class DrawableObject {
         }
     }
 
+    showGameOverScreen() {
+        const gameOverScreen = document.getElementById('gameOverScreen');
+        gameOverScreen.classList.remove('d-none');
+        gameOverScreen.classList.add('d-flex');
+    }
+
     /**
      * Loads an image from the given path.
      * @param {string} path - The path to the image.

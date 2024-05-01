@@ -4,7 +4,6 @@ class Character extends MovableObject {
     height = 300;
     width = 150;
     speed = 10;
-    player_hurt_sound = new Audio('audio/player_hurt.mp3');
     offset = {
         top: 120,
         left: 25,
@@ -69,6 +68,7 @@ class Character extends MovableObject {
         'img/2_character_pepe/4_hurt/H-43.png'
     ];
     world;
+    player_hurt_sound = new Audio('audio/player_hurt.mp3');
     walking_sound = new Audio('audio/walking.mp3');
     snoring_sound = new Audio('audio/snoring.mp3');
 
@@ -93,7 +93,6 @@ class Character extends MovableObject {
      * Moves the character based on user input and updates game world accordingly.
      * @returns {void}
      */
-
     moveCharacter() {
         this.checkSound(this.walking_sound);
         this.walking_sound.pause();
@@ -173,6 +172,7 @@ class Character extends MovableObject {
         this.checkSound(this.player_hurt_sound);
         if (this.isDead()) {
             this.playCharacterDeadAnimation();
+            stopGame();
         } else if (this.isHurt()) {
             this.player_hurt_sound.play();
             this.snoring_sound.pause();
@@ -191,13 +191,12 @@ class Character extends MovableObject {
      * @returns {void}
      */
     playCharacterDeadAnimation() {
-        const gameOverScreen = document.getElementById('gameOverScreen');
-
         this.playAnimation(this.IMAGES_DEAD);
-        gameOverScreen.classList.remove('d-none');
-        gameOverScreen.classList.add('d-flex');
+        this.showGameOverScreen();
+        this.walking_sound.volume = 0;
         background_sound.pause();
     }
+
 
     /**
      * Plays idle animation for the character based on idle duration.

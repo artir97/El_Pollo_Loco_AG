@@ -96,11 +96,9 @@ class Endboss extends MovableObject {
      */
     playEndBossDeadAnimation() {
         if (this.isDead()) {
-            const gameOverScreen = document.getElementById('gameOverScreen');
-
             this.playAnimation(this.IMAGES_DEAD);
-            gameOverScreen.classList.remove('d-none');
-            gameOverScreen.classList.add('d-flex');
+            stopGame();
+            this.showGameOverScreen();
             background_sound.pause();
         }
     }
