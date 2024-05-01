@@ -15,7 +15,7 @@ class World {
     enemy_hurt = new Audio('audio/enemy_hurt.mp3');
 
     /**
-     * Represents the World in the game.
+     * Represents the World in the game
      * @constructor
      * @param {HTMLCanvasElement} canvas - The canvas element where the game is rendered.
      * @param {KeyboardEvent} keyboard - The keyboard input for controlling the game.

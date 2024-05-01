@@ -2,12 +2,13 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let background_sound = new Audio('audio/background_music.mp3');
+let small_chicken_sound = new Audio('audio/chicken_chirping.mp3');
+
 
 function init() {
     canvas = document.getElementById("canvas");
     initLevel1();
     world = new World(canvas, keyboard);
-
 }
 
 function startGame() {
@@ -17,6 +18,7 @@ function startGame() {
 }
 
 function stopGame() {
+    turnOffSounds();
     clearAllIntervals();
 }
 
@@ -46,9 +48,9 @@ function openLegals(doc) {
 
     let url;
     if (doc === 'data') {
-        url = '../datenschutz.html';
+        url = './datenschutz.html';
     } else if (doc === 'imp') {
-        url = '../impressum.html';
+        url = './impressum.html';
     }
 
     fetch(url)
@@ -169,6 +171,11 @@ function pauseAndResumeGameSound() {
 function soundTurnedOn() {
     let soundIcon = document.getElementById('gameSound');
     return soundIcon.src.includes('img/10_menu_icons/sound_on.png');
+}
+
+function turnOffSounds() {
+    background_sound.pause();
+    small_chicken_sound.pause();
 }
 
 document.addEventListener("DOMContentLoaded", () => {

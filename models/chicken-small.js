@@ -12,7 +12,6 @@ class ChickenSmall extends MovableObject {
     IMAGES_DEAD = [
         'img/3_enemies_chicken/chicken_small/2_dead/dead.png'
     ];
-    small_chicken_sound = new Audio('audio/chicken_chirping.mp3');
 
     /**
      * Creates an instance of ChickenSmall.
@@ -44,11 +43,11 @@ class ChickenSmall extends MovableObject {
      */
     playSmallChickenAnimation() {
         this.playAnimation(this.IMAGES_WALKING);
-        this.checkSound(this.small_chicken_sound);
-        this.small_chicken_sound.play();
+        this.checkSound(small_chicken_sound);
+        small_chicken_sound.play();
         if (this.isDead()) {
             this.playAnimation(this.IMAGES_DEAD);
-            this.small_chicken_sound.pause();
+            small_chicken_sound.pause();
         }
     }
 
