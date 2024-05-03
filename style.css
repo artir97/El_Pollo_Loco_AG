@@ -6,6 +6,26 @@
 .d-flex {
     display: flex;
 }
+/* Width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #ffa700;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #ff4400;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
 
 body {
     margin: 0;
@@ -206,6 +226,11 @@ h1 {
     transition: color 100ms ease-in-out;
 }
 
+.returnToGameBtn {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 #playBtn:hover, #controlsBtn:hover, .returnToGameBtn:hover {
     background-color: #ffa700;
     cursor: pointer;
@@ -323,6 +348,9 @@ h1 {
     }
 }
 
+.impressumContainer, .datenSchutzContainer {
+    padding: 12px;
+}
 
 @media only screen and (max-width: 720px) {
     h1 {
