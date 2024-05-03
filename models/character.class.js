@@ -139,7 +139,7 @@ class Character extends MovableObject {
     moveRight() {
         this.otherDirection = false;
         super.moveRight();
-        this.lastTimeMoved = new Date().getTime();
+        this.resetIdleTimer();
         this.walking_sound.play();
     }
 
@@ -150,7 +150,7 @@ class Character extends MovableObject {
     moveLeft() {
         this.otherDirection = true;
         super.moveLeft();
-        this.lastTimeMoved = new Date().getTime();
+        this.resetIdleTimer();
         this.walking_sound.play();
     }
 
@@ -160,7 +160,7 @@ class Character extends MovableObject {
      */
     jump() {
         super.jump();
-        this.lastTimeMoved = new Date().getTime();
+        this.resetIdleTimer();
     }
 
     /**
@@ -197,7 +197,6 @@ class Character extends MovableObject {
         background_sound.volume = 0;
     }
 
-
     /**
      * Plays idle animation for the character based on idle duration.
      * @returns {void}
@@ -215,6 +214,24 @@ class Character extends MovableObject {
     }
 
     /**
+     * This method updates the last time the character moved to the current time.
+     */
+
+    resetIdleTimer() {
+        this.lastTimeMoved = new Date().getTime();
+    }
+
+    /**
+     * Listens for the 'objectThrown' event and resets the idle timer when the event is triggered.
+     * This method adds an event listener for the 'objectThrown' event and calls resetIdleTimer() when the event is triggered.
+     */
+    resetIdleOnThrow() {
+        document.addEventListener('objectThrown', () => {
+            this.resetIdleTimer();
+        });
+    }
+
+    /**
      * Initiates animation loops for character movement and state.
      * @returns {void}
      */
@@ -222,5 +239,6 @@ class Character extends MovableObject {
         setInterval(() => this.moveCharacter(), 1000 / 60);
         setInterval(() => this.playCharacterAnimation(), 1000 / 24);
         setInterval(() => this.playCharacterIdleAnimation(), 1000 / 5);
+        this.resetIdleOnThrow();
     }
 }

@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const shouldStartGame = localStorage.getItem('shouldStartGame');
     if (shouldStartGame === 'true') {
         startGame();
-        localStorage.removeItem('shouldStartGame'); // Remove the flag after starting the game
+        localStorage.removeItem('shouldStartGame');
     }
 });
 

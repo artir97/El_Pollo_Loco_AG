@@ -30,6 +30,9 @@ class ThrowableObject extends MovableObject {
      * Throws the throwable object.
      */
     throw() {
+        const event = new Event('objectThrown');
+        document.dispatchEvent(event);
+
         this.speedY = 30;
         this.applyGravity();
         setInterval(() => {
