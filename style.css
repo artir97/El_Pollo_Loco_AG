@@ -21,15 +21,21 @@ body {
     font-family: 'zabars', Arial, Helvetica, sans-serif;
 }
 
-.legals a {
+.startControls {
+    padding-top: 7px;
+}
+.legals {
+    padding-bottom: 7px;
+}
+
+.legals a button{
+    height: 50px;
     margin-left: 10px;
     margin-right: 10px;
     padding: 10px;
     color: #000;
     text-decoration: none;
     font-family: 'zabars';
-    height: 50px;
-    width: 100px;
     background-color: #ffc500;
     border-radius: 10px;
     border: 3px solid #000;
@@ -38,7 +44,7 @@ body {
     transition: color 100ms ease-in-out;
 }
 
-.legals a:hover {
+.legals a button:hover {
     background-color: #ffa700;
     cursor: pointer;
     color: #fff;
@@ -88,7 +94,7 @@ h1 {
     display: flex;
     flex-direction: column;
 
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     aspect-ratio: auto 720 / 480;
 }
