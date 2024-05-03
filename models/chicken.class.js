@@ -4,6 +4,12 @@ class Chicken extends MovableObject {
     height = 80;
     width = 100;
     energy = 5;
+    offset = {
+        top: -10,
+        left: -10,
+        right: -10,
+        bottom: -10
+    }
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
         'img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
@@ -49,7 +55,7 @@ class Chicken extends MovableObject {
         this.chicken_sound.play();
         if (this.isDead()) {
             this.playAnimation(this.IMAGES_DEAD);
-            this.chicken_sound.pause();
+            this.chicken_sound.volume = 0;
         }
     }
 

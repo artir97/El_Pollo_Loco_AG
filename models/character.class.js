@@ -194,7 +194,7 @@ class Character extends MovableObject {
         this.playAnimation(this.IMAGES_DEAD);
         this.showGameOverScreen();
         this.walking_sound.volume = 0;
-        background_sound.pause();
+        background_sound.volume = 0;
     }
 
 

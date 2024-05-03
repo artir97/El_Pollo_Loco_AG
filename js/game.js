@@ -181,8 +181,8 @@ function soundTurnedOn() {
  * Turns off game sounds.
  */
 function turnOffSounds() {
-    background_sound.pause();
-    small_chicken_sound.pause();
+    background_sound.volume = 0;
+    small_chicken_sound.volume = 0;
 }
 
 /****************************************************
