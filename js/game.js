@@ -132,13 +132,44 @@ function restartGame() {
  * @param {TouchEvent} event - The touch event object.
  */
 function handleTouchStart(event) {
+    touchMoveLeftOrRight(event);
+    touchJump(event);
+    touchThrow(event);
+}
+
+/**
+ * Handles touch event for moving left or right.
+ * @function
+ * @param {TouchEvent} event - The touch event object.
+ */
+function touchMoveLeftOrRight(event) {
     if (event.target.id === 'moveLeft') {
         keyboard.LEFT = true;
-    } else if (event.target.id === 'moveRight') {
+    }
+
+    if (event.target.id === 'moveRight') {
         keyboard.RIGHT = true;
-    } else if (event.target.id === 'jump') {
+    }
+}
+
+/**
+ * Handles touch event for jumping.
+ * @function
+ * @param {TouchEvent} event - The touch event object.
+ */
+function touchJump(event) {
+    if (event.target.id === 'jump') {
         keyboard.SPACE = true;
-    } else if (event.target.id === 'throw') {
+    }
+}
+
+/**
+ * Handles touch event for throwing.
+ * @function
+ * @param {TouchEvent} event - The touch event object.
+ */
+function touchThrow(event) {
+    if (event.target.id === 'throw') {
         keyboard.D = true;
     }
 }
@@ -188,7 +219,7 @@ function turnOffSounds() {
 /****************************************************
  *  EVENT LISTENER
  ****************************************************/
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const shouldStartGame = localStorage.getItem('shouldStartGame');
     if (shouldStartGame === 'true') {
         startGame();
@@ -197,6 +228,17 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 window.addEventListener('keydown', (event) => {
+    arrowUpOrDownDown(event);
+    arrowLeftOrRightDown(event);
+    spaceOrDDown(event);
+})
+
+/**
+ * Handles keydown event for arrow keys.
+ * @function
+ * @param {KeyboardEvent} event - The keyboard event object.
+ */
+function arrowUpOrDownDown(event) {
     if (event.key === 'ArrowUp') {
         keyboard.UP = true;
     }
@@ -204,7 +246,14 @@ window.addEventListener('keydown', (event) => {
     if (event.key === 'ArrowDown') {
         keyboard.DOWN = true;
     }
+}
 
+/**
+ * Handles keydown event for arrow keys.
+ * @function
+ * @param {KeyboardEvent} event - The keyboard event object.
+ */
+function arrowLeftOrRightDown(event) {
     if (event.key === 'ArrowLeft') {
         keyboard.LEFT = true;
     }
@@ -212,7 +261,14 @@ window.addEventListener('keydown', (event) => {
     if (event.key === 'ArrowRight') {
         keyboard.RIGHT = true;
     }
+}
 
+/**
+ * Handles keydown event for spacebar and 'd' key.
+ * @function
+ * @param {KeyboardEvent} event - The keyboard event object.
+ */
+function spaceOrDDown(event) {
     if (event.key === ' ') {
         keyboard.SPACE = true;
     }
@@ -220,9 +276,20 @@ window.addEventListener('keydown', (event) => {
     if (event.key === 'd' || event.key === 'D') {
         keyboard.D = true;
     }
-})
+}
 
 window.addEventListener('keyup', (event) => {
+    arrowUpOrDownUp(event);
+    arrowLeftOrRightUp(event);
+    spaceOrDUp(event);
+})
+
+/**
+ * Handles keyup event for arrow keys.
+ * @function
+ * @param {KeyboardEvent} event - The keyboard event object.
+ */
+function arrowUpOrDownUp(event) {
     if (event.key === 'ArrowUp') {
         keyboard.UP = false;
     }
@@ -230,7 +297,14 @@ window.addEventListener('keyup', (event) => {
     if (event.key === 'ArrowDown') {
         keyboard.DOWN = false;
     }
+}
 
+/**
+ * Handles keyup event for arrow keys.
+ * @function
+ * @param {KeyboardEvent} event - The keyboard event object.
+ */
+function arrowLeftOrRightUp(event) {
     if (event.key === 'ArrowLeft') {
         keyboard.LEFT = false;
     }
@@ -238,7 +312,14 @@ window.addEventListener('keyup', (event) => {
     if (event.key === 'ArrowRight') {
         keyboard.RIGHT = false;
     }
+}
 
+/**
+ * Handles keyup event for spacebar and 'd' key.
+ * @function
+ * @param {KeyboardEvent} event - The keyboard event object.
+ */
+function spaceOrDUp(event) {
     if (event.key === ' ') {
         keyboard.SPACE = false;
     }
@@ -246,22 +327,57 @@ window.addEventListener('keyup', (event) => {
     if (event.key === 'd' || event.key === 'D') {
         keyboard.D = false;
     }
-})
+}
 
 document.addEventListener("DOMContentLoaded", () => {
+    getControlButtons();
+    clickControlButtons();
+    getMoveButtons();
+    touchMoveButtons();
+
+});
+
+/**
+ * Retrieves control buttons from the DOM.
+ * @function getControlButtons
+ * @returns {void}
+ */
+function getControlButtons() {
     gameSoundBtn = document.getElementById('gameSoundDiv');
     restartBtn = document.getElementById('restartGame');
     restratBtnGameOver = document.getElementById('gameOverRestartGame');
+}
 
+/**
+ * Adds click event listeners to control buttons.
+ * @function clickControlButtons
+ * @returns {void}
+ */
+function clickControlButtons() {
     gameSoundBtn.addEventListener('click', pauseAndResumeGameSound);
     restartBtn.addEventListener('click', restartGame);
     restratBtnGameOver.addEventListener('click', restartGame);
+}
 
+/**
+ * Retrieves move buttons from the DOM.
+ * @function getMoveButtons
+ * @returns {void}
+ */
+
+function getMoveButtons() {
     moveLeftBtn = document.getElementById('moveLeft');
     moveRightBtn = document.getElementById('moveRight');
     jumpBtn = document.getElementById('jump');
     throwBtn = document.getElementById('throw');
+}
 
+/**
+ * Adds touch event listeners to move buttons.
+ * @function touchMoveButtons
+ * @returns {void}
+ */
+function touchMoveButtons() {
     moveLeftBtn.addEventListener('touchstart', handleTouchStart);
     moveRightBtn.addEventListener('touchstart', handleTouchStart);
     jumpBtn.addEventListener('touchstart', handleTouchStart);
@@ -271,4 +387,4 @@ document.addEventListener("DOMContentLoaded", () => {
     moveRightBtn.addEventListener('touchend', handleTouchEnd);
     jumpBtn.addEventListener('touchend', handleTouchEnd);
     throwBtn.addEventListener('touchend', handleTouchEnd);
-});
+}
