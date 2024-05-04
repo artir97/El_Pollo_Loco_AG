@@ -79,7 +79,7 @@ class Endboss extends MovableObject {
      * Moves the end boss left if the character is within a certain distance.
      */
     endBossMoveLeft() {
-        if (this.checkDistanceBetween(world.character, world.endBoss, 0, 350)) {
+        if (this.checkDistanceBetween(world.character, world.endBoss, 0, 600)) {
             this.moveLeft();
         }
     }

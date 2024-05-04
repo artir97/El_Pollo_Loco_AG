@@ -14,7 +14,7 @@ class HealthBarEndboss extends MovableObject {
      * @constructor
      */
     constructor() {
-        super(); // Call the constructor of MovableObject
+        super();
         this.loadImages(this.IMAGES);
         this.x = 2500;
         this.y = -5;
@@ -39,7 +39,7 @@ class HealthBarEndboss extends MovableObject {
      * @function
      */
     endBossHealthBarMoveLeft() {
-        if (this.checkDistanceBetween(world.character, world.endBoss, 0, 350)) {
+        if (this.checkDistanceBetween(world.character, world.endBoss, 0, 600)) {
             this.moveLeft();
         }
     }
