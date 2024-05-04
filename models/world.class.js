@@ -84,6 +84,7 @@ class World {
         if (this.character.isAboveGround()) {
             if (this.character.isColliding(enemy)) {
                 enemy.hit();
+                this.healthBarEndBoss.setPercentage(this.endBoss.energy);
                 this.enemy_hurt.play();
                 this.character.jump();
             }
@@ -195,6 +196,7 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
         this.drawCharacterBars();
+        this.drawEndBossHealthBar();
         this.drawObjects();
         this.ctx.translate(-this.camera_x, 0);
         let self = this;
@@ -223,8 +225,11 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
-        this.addToMap(this.healthBarEndBoss);
         this.addObjectsToMap(this.throwableObjects);
+    }
+
+    drawEndBossHealthBar() {
+        this.addToMap(this.healthBarEndBoss);
     }
 
     /**

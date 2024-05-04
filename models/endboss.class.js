@@ -42,6 +42,7 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/5_dead/G26.png'
     ];
 
+
     /**
      * Creates an instance of Endboss.
      * @constructor
@@ -58,6 +59,7 @@ class Endboss extends MovableObject {
         this.y = -30;
         this.height = 500;
         this.width = 300;
+        this.speed = 5.0;
         this.animate();
     }
 
@@ -67,17 +69,46 @@ class Endboss extends MovableObject {
      */
     animate() {
         setInterval(() => this.playEndBossAnimation(), 200);
+        setInterval(() => this.endBossMoveLeft(), 1000 / 60);
+        setInterval(() => this.playEndBossWalkingAnimation(), 1000 / 10);
+        setInterval(() => this.playEndBossAttackAnimation(), 1000 / 3);
+
     }
 
-
+    /**
+     * Moves the end boss left if the character is within a certain distance.
+     */
+    endBossMoveLeft() {
+        if (this.checkDistanceBetween(world.character, world.endBoss, 0, 350)) {
+            this.moveLeft();
+        }
+    }
 
     /**
-     * Plays the end boss alert animation.
-     * @returns {void}
+     * Plays the attack animation for the end boss if the character is within a certain distance.
+     */
+    playEndBossAttackAnimation() {
+        if (this.checkDistanceBetween(world.character, world.endBoss, 0, 120)) {
+            this.playAnimation(this.IMAGES_ATTACK);
+        }
+    }
+
+    /**
+     * Plays the walking animation for the end boss if the character is within a certain distance.
+     */
+    playEndBossWalkingAnimation() {
+        if (this.checkDistanceBetween(world.character, world.endBoss, 121, 350)) {
+            this.playAnimation(this.IMAGES_WALKING);
+        }
+    }
+
+    /**
+     * Plays the alert animation for the end boss if the character is within a certain distance.
      */
     playEndBossAlertAnimation() {
-        this.playAnimation(this.IMAGES_ALERT);
-
+        if (this.checkDistanceBetween(world.character, world.endBoss, 351, 450)) {
+            this.playAnimation(this.IMAGES_ALERT);
+        }
     }
 
     /**
@@ -111,6 +142,5 @@ class Endboss extends MovableObject {
         this.playEndBossAlertAnimation();
         this.playEndBossHurtAnimation();
         this.playEndBossDeadAnimation();
-
     }
 }

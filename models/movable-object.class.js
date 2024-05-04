@@ -51,6 +51,18 @@ class MovableObject extends DrawableObject {
     }
 
     /**
+     * Checks if the distance between the player and the enemy is less than 500 units.
+     * @param {object} player - The player object with properties x and y representing its position.
+     * @param {object} enemy - The enemy object with properties x and y representing its position.
+     * @param {number} distance - The maximum allowed distance between the player and the enemy.
+     * @returns {boolean} Returns true if the distance between the player and the enemy is less than 500 units, otherwise false.
+     */
+    checkDistanceBetween(player, enemy, minDistance, maxDistance){
+        let distanceBetween = enemy.x - player.x;
+        return ( distanceBetween > minDistance && distanceBetween < maxDistance ) ;
+    }
+
+    /**
      * Checks if the object is hurt.
      * @returns {boolean} - Indicates if the object is hurt.
      */

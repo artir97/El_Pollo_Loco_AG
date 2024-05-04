@@ -236,7 +236,7 @@ class Character extends MovableObject {
      * @returns {void}
      */
     animate() {
-        setInterval(() => this.moveCharacter(), 1000 / 60);
+        setInterval(() => this.moveCharacter(), 1000 / 60);4
         setInterval(() => this.playCharacterAnimation(), 1000 / 24);
         setInterval(() => this.playCharacterIdleAnimation(), 1000 / 5);
         this.resetIdleOnThrow();
