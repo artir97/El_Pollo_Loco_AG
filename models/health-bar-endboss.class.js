@@ -16,31 +16,11 @@ class HealthBarEndboss extends MovableObject {
     constructor() {
         super();
         this.loadImages(this.IMAGES);
-        this.x = 2500;
-        this.y = -5;
-        this.width = 300;
+        this.x = 440;
+        this.y = 40;
+        this.width = 250;
         this.height = 70;
-        this.speed = 5.0;
+        this.speed = 2.5;
         this.setPercentage(this.percentage);
-        this.animate();
-    }
-
-    /**
-     * Initiates the animation loop for moving the end boss health bar.
-     * @function
-     */
-    animate() {
-        setInterval(() => this.endBossHealthBarMoveLeft(), 1000 / 60);
-
-    }
-
-    /**
-     * Moves the end boss health bar to the left if the character is within a specified distance range from the end boss.
-     * @function
-     */
-    endBossHealthBarMoveLeft() {
-        if (this.checkDistanceBetween(world.character, world.endBoss, 0, 600)) {
-            this.moveLeft();
-        }
     }
 }

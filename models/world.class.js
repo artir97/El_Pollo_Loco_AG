@@ -47,8 +47,11 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
-            this.checkThrowObjects()
         }, 200);
+
+        setInterval(() => {
+            this.checkThrowObjects();
+        }, 100);
     }
 
     /**
@@ -198,6 +201,7 @@ class World {
         this.drawObjects();
         this.drawCharacterBars();
         this.drawEndBossHealthBar();
+        this.drawCharacter();
         this.ctx.translate(-this.camera_x, 0);
         let self = this;
         requestAnimationFrame(function () {
@@ -220,7 +224,6 @@ class World {
      * Draws all objects onto the canvas, including character, clouds, enemies, coins, bottles, health bar of the end boss, and throwable objects.
      */
     drawObjects() {
-        this.addToMap(this.character);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.coins);
@@ -228,8 +231,22 @@ class World {
         this.addObjectsToMap(this.throwableObjects);
     }
 
+    /**
+     * Draws the character on the map.
+     */
+    drawCharacter() {
+        this.addToMap(this.character);
+    }
+
+    /**
+     * Draws the health bar of the end boss if it is within a certain distance from the character.
+     */
     drawEndBossHealthBar() {
-        this.addToMap(this.healthBarEndBoss);
+        if(this.endBoss.x - this.character.x < 600){
+            this.ctx.translate(-this.camera_x, 0);
+            this.addToMap(this.healthBarEndBoss);
+            this.ctx.translate(this.camera_x, 0);
+        }
     }
 
     /**
@@ -252,6 +269,7 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
+        mo.drawFrame(this.ctx);
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);

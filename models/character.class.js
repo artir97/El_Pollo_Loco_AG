@@ -42,6 +42,7 @@ class Character extends MovableObject {
         'img/2_character_pepe/2_walk/W-25.png',
         'img/2_character_pepe/2_walk/W-26.png'
     ];
+    jumpAnimationPlayed = false;
     IMAGES_JUMPING = [
         'img/2_character_pepe/3_jump/J-31.png',
         'img/2_character_pepe/3_jump/J-32.png',
@@ -177,12 +178,22 @@ class Character extends MovableObject {
             this.player_hurt_sound.play();
             this.snoring_sound.pause();
             this.playAnimation(this.IMAGES_HURT);
-        } else if (this.isAboveGround()) {
-            this.snoring_sound.pause();
-            this.playAnimation(this.IMAGES_JUMPING);
-        } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+        } else if ( (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) && !this.isAboveGround()) {
             this.snoring_sound.pause();
             this.playAnimation(this.IMAGES_WALKING);
+        }
+    }
+
+    /**
+     * Plays the character jump animation if above ground and not already played.
+     * @function playCharacterJumpAnimation
+     */
+    playCharacterJumpAnimation() {
+        if (this.isAboveGround() && !this.jumpAnimationPlayed) {
+            this.snoring_sound.pause();
+            this.playAnimation(this.IMAGES_JUMPING);
+        } else if (!this.isAboveGround()) {
+            this.jumpAnimationPlayed = false;
         }
     }
 
@@ -236,8 +247,9 @@ class Character extends MovableObject {
      * @returns {void}
      */
     animate() {
-        setInterval(() => this.moveCharacter(), 1000 / 60);4
+        setInterval(() => this.moveCharacter(), 1000 / 60);
         setInterval(() => this.playCharacterAnimation(), 1000 / 24);
+        setInterval(() => this.playCharacterJumpAnimation(), 1000 / 7)
         setInterval(() => this.playCharacterIdleAnimation(), 1000 / 5);
         this.resetIdleOnThrow();
     }

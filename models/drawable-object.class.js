@@ -71,9 +71,17 @@ class DrawableObject {
         this.percentage = percentage;
         let path = this.IMAGES[this.resolveImageIndex()];
         this.img = this.imageCache[path];
-
-
     }
+
+    drawFrame(ctx) {
+            if (this instanceof Character || this instanceof Endboss || this instanceof ChickenSmall || this instanceof Chicken) {
+
+                ctx.beginPath();
+                ctx.lineWidth = '5';
+                ctx.strokeStyle = 'red'; // Choose a different color for offset
+                ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right - this.offset.left, this.height - this.offset.bottom - this.offset.top);
+                ctx.stroke();
+            }}
 
     /**
      * Resolves the index of the image based on the percentage value.
@@ -88,7 +96,7 @@ class DrawableObject {
             return 3;
         } else if (this.percentage >= 40) {
             return 2;
-        } else if (this.percentage >= 20) {
+        } else if (this.percentage > 5) {
             return 1;
         } else {
             return 0;
