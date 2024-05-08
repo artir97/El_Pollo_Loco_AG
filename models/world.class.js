@@ -52,6 +52,10 @@ class World {
         setInterval(() => {
             this.checkThrowObjects();
         }, 100);
+
+        setInterval(() => {
+           this.checkCollisionWithEnemyOnJump();
+        }, 50);
     }
 
     /**
@@ -71,10 +75,19 @@ class World {
     checkCollisionWithEnemy() {
         this.checkSoundWorld(this.enemy_hurt);
         this.level.enemies.forEach((enemy, index) => {
-            this.characterJumpsOnEnemy(enemy);
             this.characterCollidesWithEnemy(enemy);
+        });
+    }
+
+    /**
+     * Checks for collision between the character and enemies during a jump and performs necessary actions.
+     * @function
+     */
+    checkCollisionWithEnemyOnJump() {
+        this.level.enemies.forEach((enemy, index) => {
+            this.characterJumpsOnEnemy(enemy);
             if (enemy.energy <= 0) {
-                    this.level.enemies.splice(index, 1);
+                this.level.enemies.splice(index, 1);
             }
         });
     }
@@ -99,7 +112,7 @@ class World {
      * @param {Object} enemy - The enemy object.
      */
     characterCollidesWithEnemy(enemy) {
-        if (this.character.isColliding(enemy)) {
+        if (this.character.isColliding(enemy) && !this.character.isAboveGround()) {
             if (enemy.energy > 0) {
                 this.character.hit();
                 this.healthBar.setPercentage(this.character.energy);
@@ -269,7 +282,6 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);

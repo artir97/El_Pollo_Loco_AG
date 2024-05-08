@@ -112,25 +112,6 @@ class MovableObject extends DrawableObject {
         );
     }
 
-    isCollidingFromAbove(obj) {
-        // Check if the object is moving downward
-        const movingDownward = this.speedY > 0;
-
-        // Check collision only if the object is moving downward
-        if (movingDownward) {
-            return (
-                this.y + this.height - this.offset.bottom > obj.y + obj.offset.top && // Check bottom side of this object
-                this.y + this.offset.top < obj.y + obj.height - obj.offset.bottom && // Check top side of the other object
-                this.x + this.width - this.offset.right > obj.x + obj.offset.left && // Check right side of this object
-                this.x + this.offset.left < obj.x + obj.width - obj.offset.right // Check left side of this object
-            );
-        }
-        // If not moving downward, return false (no collision from above)
-        return false;
-    }
-
-
-
     /**
      * Collects a coin.
      */
