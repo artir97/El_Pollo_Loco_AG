@@ -57,9 +57,13 @@ class MovableObject extends DrawableObject {
      * @param {number} distance - The maximum allowed distance between the player and the enemy.
      * @returns {boolean} Returns true if the distance between the player and the enemy is less than 500 units, otherwise false.
      */
-    checkDistanceBetween(player, enemy, minDistance, maxDistance){
+    checkDistanceBetween(player, enemy, minDistance, maxDistance) {
         let distanceBetween = enemy.x - player.x;
-        return ( distanceBetween > minDistance && distanceBetween < maxDistance ) ;
+        if (distanceBetween < 0) {
+            return true;
+        } else {
+            return (distanceBetween > minDistance && distanceBetween < maxDistance);
+        }
     }
 
     /**
@@ -86,9 +90,9 @@ class MovableObject extends DrawableObject {
      * @returns {void}
      */
     hit() {
-        if(this instanceof Endboss) {
-            this.energy -= 3;
-        }else {
+        if (this instanceof Endboss) {
+            this.energy -= 20;
+        } else {
             this.energy -= 5;
         }
         if (this.energy < 0) {

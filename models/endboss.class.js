@@ -79,7 +79,7 @@ class Endboss extends MovableObject {
      * Moves the end boss left if the character is within a certain distance.
      */
     endBossMoveLeft() {
-        if (this.checkDistanceBetween(world.character, world.endBoss, 0, 600)) {
+        if (this.checkDistanceBetween(world.character, world.endBoss, 0, 900)) {
             this.moveLeft();
         }
     }
@@ -134,6 +134,14 @@ class Endboss extends MovableObject {
         }
     }
 
+    playGameOver(){
+        if(this.x <= -100) {
+            stopGame();
+            this.showGameOverScreen();
+            background_sound.pause();
+        }
+    }
+
     /**
      * Plays the animations for the end boss.
      * @returns {void}
@@ -142,5 +150,6 @@ class Endboss extends MovableObject {
         this.playEndBossAlertAnimation();
         this.playEndBossHurtAnimation();
         this.playEndBossDeadAnimation();
+        this.playGameOver();
     }
 }

@@ -26,6 +26,7 @@ function startGame() {
  * Stops the game and clears intervals.
  */
 function stopGame() {
+    pauseAllSounds();
     turnOffSounds();
     clearAllIntervals();
 }
@@ -118,12 +119,38 @@ function playBackGroundSound() {
     background_sound.volume = 0;
 }
 
+function removeGameOverScreen() {
+    const gameOverScreen = document.getElementById('gameOverScreen');
+    gameOverScreen.classList.add('d-none');
+    gameOverScreen.classList.remove('d-flex');
+}
+
 /**
  * Restarts the game by reloading the page.
  */
 function restartGame() {
-    localStorage.setItem('shouldStartGame', 'true');
-    window.location.reload();
+    stopGame();
+
+    world.ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    world.character.y = -10;
+    world.character.x = 120;
+
+    world.character.energy = 100;
+    world.healthBar.setPercentage(100);
+
+    world.character.coins = 0
+    world.coinBar.setPercentage(0);
+
+    world.character.bottles = 0;
+    world.bottleBar.setPercentage(0);
+
+    world.endBoss.energy = 100;
+    world.healthBarEndBoss.setPercentage(100);
+
+    initLevel1();
+    startGame();
+    removeGameOverScreen();
 }
 
 
@@ -216,16 +243,14 @@ function turnOffSounds() {
     small_chicken_sound.volume = 0;
 }
 
+function pauseAllSounds() {
+    small_chicken_sound.pause();
+    background_sound.pause();
+}
+
 /****************************************************
  *  EVENT LISTENER
  ****************************************************/
-document.addEventListener("DOMContentLoaded", function () {
-    const shouldStartGame = localStorage.getItem('shouldStartGame');
-    if (shouldStartGame === 'true') {
-        startGame();
-        localStorage.removeItem('shouldStartGame');
-    }
-});
 
 window.addEventListener('keydown', (event) => {
     arrowUpOrDownDown(event);

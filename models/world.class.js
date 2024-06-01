@@ -12,6 +12,7 @@ class World {
     bottleBar = new BottleBar();
     healthBarEndBoss = new HealthBarEndboss();
     throwableObjects = [];
+    canThrow = true;
     enemy_hurt = new Audio('audio/enemy_hurt.mp3');
 
     /**
@@ -98,7 +99,8 @@ class World {
      */
     characterJumpsOnEnemy(enemy) {
         if (this.character.isAboveGround()) {
-            if (this.character.isColliding(enemy)) {
+            console.log(this.character.speedY);
+            if (this.character.isColliding(enemy) && this.character.speedY <= 0) {
                 enemy.hit();
                 this.healthBarEndBoss.setPercentage(this.endBoss.energy);
                 this.enemy_hurt.play();
@@ -158,13 +160,19 @@ class World {
      * Checks if the character throws a bottle based on keyboard input, and manages the throwable objects.
      */
     checkThrowObjects() {
-        if (this.keyboard.D) {
+        if (this.keyboard.D && this.canThrow) {
             if (this.character.bottles > 0) {
                 let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
                 this.throwableObjects.push(bottle);
 
                 this.character.bottles -= 20;
                 this.bottleBar.setPercentage(this.character.bottles);
+
+                this.canThrow = false;
+                setTimeout(() => {
+                    this.canThrow = true;
+                }, 1000);
+
             }
         }
     }
@@ -187,7 +195,20 @@ class World {
     /**
      * Checks collision between throwable objects (bottles) and the end boss, and handles the consequences.
      */
+
     checkCollisionBottleWithEndboss() {
+        for (let i = this.throwableObjects.length - 1; i >= 0; i--) {
+            let bottle = this.throwableObjects[i];
+            if (this.endBoss.isColliding(bottle)) {
+                this.endBoss.hit();
+                this.healthBarEndBoss.setPercentage(this.endBoss.energy);
+                this.enemy_hurt.play();
+                this.throwableObjects.splice(i, 1); // Remove the bottle from the array
+            }
+        }
+    }
+
+    /*checkCollisionBottleWithEndboss() {
         this.throwableObjects.forEach((bottle) => {
             if (this.endBoss.isColliding(bottle)) {
                 this.endBoss.hit();
@@ -195,7 +216,7 @@ class World {
                 this.enemy_hurt.play();
             }
         });
-    }
+    }*/
 
     /**
      * Sets the world reference for the character object.
