@@ -99,7 +99,6 @@ class World {
      */
     characterJumpsOnEnemy(enemy) {
         if (this.character.isAboveGround()) {
-            console.log(this.character.speedY);
             if (this.character.isColliding(enemy) && this.character.speedY <= 0) {
                 enemy.hit();
                 this.healthBarEndBoss.setPercentage(this.endBoss.energy);
